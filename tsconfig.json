@@ -6,12 +6,11 @@
         "noImplicitAny": true,
         "removeComments": false,
         "noLib": false,
-        "sourceMap": true,
-        "watch": true
+        "sourceMap": true
     },
     "filesGlob": [],
     "files": [
-        
+        "source/app.ts"
     ],
     "exclude": []
 }
