@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
-        "module": "system",
+        "module": "amd",
         "target": "ES5",
         "declaration": false,
         "noImplicitAny": true,
         "removeComments": false,
         "noLib": false,
-        "sourceMap": true
+        "sourceMap": true,
+        "watch": true
     },
     "filesGlob": [],
     "files": [
