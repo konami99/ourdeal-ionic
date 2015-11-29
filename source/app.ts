@@ -21,17 +21,54 @@ module OD {
 	
 	configApp.$inject = ["$stateProvider", "$urlRouterProvider"];
 	function configApp($stateProvider:ng.ui.IStateProvider, $urlRouterProvider:ng.ui.IUrlRouterProvider) {
-		$urlRouterProvider.otherwise('/layout');
+		
 
-		$stateProvider.state('layout', {
-				url: "/layout",
-				templateUrl: "app/layout/layout.html"
+		$stateProvider
+		 .state('app', {
+			url: '/app',
+			abstract: true,
+			templateUrl: 'templates/menu.html',
+			controller: 'AppCtrl'
+		})
+		
+		.state('app.search', {
+			url: '/search',
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/search.html'
+				}
+			}
+		})
+		
+		.state('app.browse', {
+			url: '/browse',
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/browse.html'
+				}
+			}
 			})
-
-		.state('about', {
-			url: "/about",
-			templateUrl: "app/about/about.html"
+			.state('app.playlists', {
+			url: '/playlists',
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/playlists.html',
+					controller: 'PlaylistsCtrl'
+				}
+			}
+			})
+		
+		.state('app.single', {
+			url: '/playlists/:playlistId',
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/playlist.html',
+					controller: 'PlaylistCtrl'
+				}
+			}
 		});
+		
+		$urlRouterProvider.otherwise('/app/playlists');
 	}
 	
 	angular.module('OurDeal')
