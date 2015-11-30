@@ -15,10 +15,10 @@ module.exports = {
         json:['src/**/*.json'],
         config: 'config/**/*',
         assets: 'src/assets/**/*',
-        js: ['client/Ang/**/*.js'],
+        js: ['source/**/*.js'],
         ts : ['client/Ang/**/*.ts'],
         tslibs : 'libs/**/*.ts',
-        html:['src/**/*.html'],
+        html:['source/**/*.html'],
         index: 'src/index.html',
         lib: {
             js: ['lib/**/*.js'],
