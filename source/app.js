@@ -5,15 +5,15 @@
 var OD;
 (function (OD) {
     'use strict';
-    runApp.$inject = ["$ionicPlatform", "$window"];
-    function runApp($ionicPlatform, $window) {
+    runApp.$inject = ["$ionicPlatform"];
+    function runApp($ionicPlatform) {
         $ionicPlatform.ready(function () {
-            if ($window.cordova && $window.cordova.plugins.Keyboard) {
-                $window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                $window.cordova.plugins.Keyboard.disableScroll(true);
+            if (window.cordova && window.cordova.plugins.Keyboard) {
+                window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                window.cordova.plugins.Keyboard.disableScroll(true);
             }
-            if ($window.StatusBar) {
-                $window.StatusBar.styleDefault();
+            if (window.StatusBar) {
+                window.StatusBar.styleDefault();
             }
         });
     }

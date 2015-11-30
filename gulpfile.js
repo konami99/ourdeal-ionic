@@ -71,7 +71,7 @@ var cfg = require('./build.config.js');
 gulp.task('app:js:build', function () {
     logHighlight("Copy js files");
     var src = cfg.src.js;
-    return tsResult = gulp.src(src).pipe(concat('app.test.concat.min.js')).pipe(gulp.dest('./'));
+    return tsResult = gulp.src(src).pipe(concat('app.custom.js')).pipe(gulp.dest('www/js/'));
 });
 
 
@@ -95,10 +95,10 @@ gulp.task('watch', ['app:build'], function () {
 
 
     // .js files
-    gulp.watch('client/Ang/**/*.js', ['app:js:build']);
+    gulp.watch('source/**/*.js', ['app:js:build']);
 
 
-    var buildDir = 'app.test.min.js';
+    var buildDir = 'www';
     gulp.watch(buildDir).on('change', function (file) {
         server.changed(file.path);
     });

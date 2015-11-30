@@ -3,18 +3,24 @@
 /// <reference path="../typings/angular-ui-router/angular-ui-router.d.ts" />
 /// <reference path="../typings/ionic/ionic.d.ts" />
 
+interface Window {
+    cordova: any;
+    StatusBar: any;
+}
+
+
 module OD {
 	'use strict';
 	
-	runApp.$inject = ["$ionicPlatform", "$window"];
-	function runApp($ionicPlatform:ionic.platform.IonicPlatformService, $window) {
+	runApp.$inject = ["$ionicPlatform"];
+	function runApp($ionicPlatform:ionic.platform.IonicPlatformService) {
 		$ionicPlatform.ready(() => {
-			if ($window.cordova && $window.cordova.plugins.Keyboard) {
-				$window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-				$window.cordova.plugins.Keyboard.disableScroll(true);
+			if (window.cordova && window.cordova.plugins.Keyboard) {
+				window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+				window.cordova.plugins.Keyboard.disableScroll(true);
 			}
-			if ($window.StatusBar) {
-				$window.StatusBar.styleDefault();
+			if (window.StatusBar) {
+				window.StatusBar.styleDefault();
 			}
 		});
 	}
@@ -48,15 +54,15 @@ module OD {
 				}
 			}
 			})
-			.state('app.playlists', {
-			url: '/playlists',
-			views: {
-				'menuContent': {
-					templateUrl: 'templates/playlists.html',
-					controller: 'PlaylistsCtrl'
-				}
+		.state('app.playlists', {
+		url: '/playlists',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/playlists.html',
+				controller: 'PlaylistsCtrl'
 			}
-			})
+		}
+		})
 		
 		.state('app.single', {
 			url: '/playlists/:playlistId',
