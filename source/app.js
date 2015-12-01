@@ -24,7 +24,8 @@ var OurDeal;
             url: '/app',
             abstract: true,
             templateUrl: 'templates/menu.html',
-            controller: 'AppCtrl'
+            controller: 'AppCtrl',
+            controllerAs: 'appc'
         })
             .state('app.search', {
             url: '/search',
