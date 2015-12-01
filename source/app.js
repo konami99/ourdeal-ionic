@@ -2,8 +2,8 @@
 /// <reference path="../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../typings/angular-ui-router/angular-ui-router.d.ts" />
 /// <reference path="../typings/ionic/ionic.d.ts" />
-var OD;
-(function (OD) {
+var OurDeal;
+(function (OurDeal) {
     'use strict';
     runApp.$inject = ["$ionicPlatform"];
     function runApp($ionicPlatform) {
@@ -62,8 +62,8 @@ var OD;
         });
         $urlRouterProvider.otherwise('/app/playlists');
     }
-    angular.module('OurDeal')
+    angular.module('OurDeal', ['ionic'])
         .run(runApp)
         .config(configApp);
-})(OD || (OD = {}));
+})(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=app.js.map

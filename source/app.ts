@@ -9,7 +9,7 @@ interface Window {
 }
 
 
-module OD {
+module OurDeal {
 	'use strict';
 	
 	runApp.$inject = ["$ionicPlatform"];
@@ -77,10 +77,7 @@ module OD {
 		$urlRouterProvider.otherwise('/app/playlists');
 	}
 	
-	angular.module('OurDeal')
+	angular.module('OurDeal', ['ionic'])
 		.run(runApp)
-		.config(configApp);
-		
-		
-		
+		.config(configApp);		
 }
