@@ -19,23 +19,17 @@ module OurDeal {
 			}).then((modal: ionic.modal.IonicModalController)=>{
 				
 				this.modalx = modal;
-				console.log(this.modalx);
+				//console.log(this.modalx);
 			});
     	}
 		
 		closeLogin(){
+			console.log(this.modalx);
 			this.modalx.hide();
 		}
 		
 		login(){
-			
-				
 			this.modalx.show();	
-				
-				
-				
-				
-				
 		}
 		
 		doLogin(){

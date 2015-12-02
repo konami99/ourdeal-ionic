@@ -84,10 +84,11 @@ var OurDeal;
                 scope: _this;
             }).then(function (modal) {
                 _this.modalx = modal;
-                console.log(_this.modalx);
+                //console.log(this.modalx);
             });
         }
         AppCtrl.prototype.closeLogin = function () {
+            console.log(this.modalx);
             this.modalx.hide();
         };
         AppCtrl.prototype.login = function () {
