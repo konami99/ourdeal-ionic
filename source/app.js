@@ -48,7 +48,8 @@ var OurDeal;
             views: {
                 'menuContent': {
                     templateUrl: 'templates/playlists.html',
-                    controller: 'PlaylistsCtrl'
+                    controller: 'PlaylistsCtrl',
+                    controllerAs: 'playlistsc'
                 }
             }
         })
@@ -57,7 +58,8 @@ var OurDeal;
             views: {
                 'menuContent': {
                     templateUrl: 'templates/playlist.html',
-                    controller: 'PlaylistCtrl'
+                    controller: 'PlaylistCtrl',
+                    controllerAs: 'playlistc'
                 }
             }
         });

@@ -6,16 +6,15 @@ var OurDeal;
 (function (OurDeal) {
     'use strict';
     var AppCtrl = (function () {
+        //http://stackoverflow.com/questions/25854422/using-this-as-scope-when-creating-ionicmodal?rq=1
         function AppCtrl(ionicModal, $scope) {
             var _this = this;
             this.ionicModal = ionicModal;
             this.loginData = {};
-            //var ionicModalConfig = { controller: 'AppCtrl', controllerAs: 'appc' };
             ionicModal.fromTemplateUrl('templates/login.html', {
                 scope: $scope
             }).then(function (modal) {
                 _this.modalx = modal;
-                //console.log(this.modalx);
             });
         }
         AppCtrl.prototype.closeLogin = function () {

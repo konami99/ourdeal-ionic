@@ -60,7 +60,8 @@ module OurDeal {
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/playlists.html',
-				controller: 'PlaylistsCtrl'
+				controller: 'PlaylistsCtrl',
+				controllerAs: 'playlistsc'
 			}
 		}
 		})
@@ -70,7 +71,8 @@ module OurDeal {
 			views: {
 				'menuContent': {
 					templateUrl: 'templates/playlist.html',
-					controller: 'PlaylistCtrl'
+					controller: 'PlaylistCtrl',
+					controllerAs: 'playlistc'
 				}
 			}
 		});
