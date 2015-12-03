@@ -13,7 +13,8 @@
         "source/app.ts",
         "source/controllers/app_controller.ts",
         "source/controllers/playlists_controller.ts",
-        "source/controllers/playlist_controller.ts"
+        "source/controllers/playlist_controller.ts",
+        "source/models/deal_information_brief.ts"
     ],
     "exclude": []
 }
