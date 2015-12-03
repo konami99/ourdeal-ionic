@@ -12,19 +12,19 @@ module OurDeal {
 		private loginData = {};
 		private modalx : ionic.modal.IonicModalController
 		
-		static $inject = ["$ionicModal"];
-		constructor(private ionicModal: ionic.modal.IonicModalService){
-			ionicModal.fromTemplateUrl('templates/login.html', ()=>{
-				scope: this
+		static $inject = ["$ionicModal", "$scope"];
+		
+		//http://stackoverflow.com/questions/25854422/using-this-as-scope-when-creating-ionicmodal?rq=1
+		constructor(private ionicModal: ionic.modal.IonicModalService, $scope: ng.IScope){
+			ionicModal.fromTemplateUrl('templates/login.html',{
+				scope: $scope
 			}).then((modal: ionic.modal.IonicModalController)=>{
-				
 				this.modalx = modal;
-				//console.log(this.modalx);
 			});
     	}
 		
 		closeLogin(){
-			console.log(this.modalx);
+			console.log('closelogin'); 
 			this.modalx.hide();
 		}
 		
@@ -33,7 +33,7 @@ module OurDeal {
 		}
 		
 		doLogin(){
-			
+			console.log('dologin');
 		}
 	}
 	

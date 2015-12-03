@@ -6,27 +6,29 @@ var OurDeal;
 (function (OurDeal) {
     'use strict';
     var AppCtrl = (function () {
-        function AppCtrl(ionicModal) {
+        function AppCtrl(ionicModal, $scope) {
             var _this = this;
             this.ionicModal = ionicModal;
             this.loginData = {};
-            ionicModal.fromTemplateUrl('templates/login.html', function () {
-                scope: _this;
+            //var ionicModalConfig = { controller: 'AppCtrl', controllerAs: 'appc' };
+            ionicModal.fromTemplateUrl('templates/login.html', {
+                scope: $scope
             }).then(function (modal) {
                 _this.modalx = modal;
                 //console.log(this.modalx);
             });
         }
         AppCtrl.prototype.closeLogin = function () {
-            console.log(this.modalx);
+            console.log('closelogin');
             this.modalx.hide();
         };
         AppCtrl.prototype.login = function () {
             this.modalx.show();
         };
         AppCtrl.prototype.doLogin = function () {
+            console.log('dologin');
         };
-        AppCtrl.$inject = ["$ionicModal"];
+        AppCtrl.$inject = ["$ionicModal", "$scope"];
         return AppCtrl;
     })();
     OurDeal.AppCtrl = AppCtrl;
