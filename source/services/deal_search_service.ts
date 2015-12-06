@@ -5,8 +5,20 @@
 
 module OurDeal {
 	export interface ISearchService {
-		check() : ng.IPromise<ng.IHttpPromiseCallbackArg<DealInformationBrief[]>>;
+		check(address:string) : ng.IPromise<ng.IHttpPromiseCallbackArg<DealInformationBrief[]>>;
 	}
 	
-	//angular.module("OurDeal").service("SearchService", SearchService);
+	class SearchService implements ISearchService {
+		static $inject = ['$http'];
+		
+		constructor(private $http : ng.IHttpService){
+			
+		}
+		
+		check(address:string) : ng.IPromise<ng.IHttpPromiseCallbackArg<DealInformationBrief[]>>{
+			return this.$http.get(address);
+		}
+	}
+	
+	angular.module("OurDeal").service("SearchService", SearchService);
 }
