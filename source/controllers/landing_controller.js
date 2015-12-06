@@ -7,10 +7,12 @@ var OurDeal;
     'user strict';
     var LandingCtrl = (function () {
         function LandingCtrl(serchService) {
+            var _this = this;
             this.serchService = serchService;
             this.serchService.check('https://script.google.com/macros/s/AKfycbza1HDmXJPGvlKozybBVu4OVZkkG4zkMJNp_2skefl9EjyisBrN/exec')
                 .then(function (result) {
                 console.log(result);
+                _this.deals = result.data;
             });
         }
         LandingCtrl.$inject = ['SearchService'];
