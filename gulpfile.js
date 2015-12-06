@@ -7,6 +7,21 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 
+var Q = require("q"),
+    path = require('path') ,
+    bowerFiles = require('gulp-bower-files'),
+    jshint = require('gulp-jshint'),
+    jshintStylish = require('jshint-stylish-ex'),
+    uglify = require('gulp-uglifyjs'),
+    clean = require('gulp-clean'),
+    livereload = require('gulp-livereload'),
+    inject = require("gulp-inject"),
+    autoprefixer = require('gulp-autoprefixer'),
+    htmlmin = require('gulp-htmlmin'),
+    runSequence = require('run-sequence'),
+    mergestream = require('merge-stream'),
+    gulpFilter = require('gulp-filter');
+
 var paths = {
   sass: ['./scss/**/*.scss']
 };
@@ -49,3 +64,46 @@ gulp.task('git-check', function(done) {
   }
   done();
 });
+
+
+var cfg = require('./build.config.js');
+
+gulp.task('app:js:build', function () {
+    logHighlight("Copy js files");
+    var src = cfg.src.js;
+    return tsResult = gulp.src(src).pipe(concat('app.custom.js')).pipe(gulp.dest('www/js/'));
+});
+
+
+gulp.task('app:build', function () {
+    var deferred = Q.defer();
+
+    runSequence(
+
+        'app:js:build',
+
+        function () {
+            deferred.resolve();
+        });
+
+    return deferred.promise;
+});
+
+
+gulp.task('watch', ['app:build'], function () {
+    var server = livereload();
+
+
+    // .js files
+    gulp.watch('source/**/*.js', ['app:js:build']);
+
+
+    var buildDir = 'www';
+    gulp.watch(buildDir).on('change', function (file) {
+        server.changed(file.path);
+    });
+});
+
+function logHighlight(message) {
+    gutil.log(gutil.colors.black.bgWhite(message));
+};
