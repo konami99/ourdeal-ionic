@@ -14,8 +14,9 @@ module OurDeal {
 		constructor(private serchService: ISearchService) {
 			this.serchService.check('https://script.google.com/macros/s/AKfycbza1HDmXJPGvlKozybBVu4OVZkkG4zkMJNp_2skefl9EjyisBrN/exec')
 				.then((result: ng.IHttpPromiseCallbackArg<DealInformationBrief[]>)=>{
-					console.log(result);
+					//console.log(result);
 					this.deals= result.data;
+					console.log(this.deals);
 				});
 		}
 		
