@@ -11,7 +11,7 @@ module OurDeal {
 		
 		static $inject = ['SearchService'];
 		constructor(private serchService: ISearchService) {
-			this.serchService.check('https://script.google.com/macros/s/AKfycbzPg5maTWOvH_CxrvFu5OSqXLJHVKa3kiUfMDrUlbEY/dev')
+			this.serchService.check('https://script.google.com/macros/s/AKfycbza1HDmXJPGvlKozybBVu4OVZkkG4zkMJNp_2skefl9EjyisBrN/exec')
 				.then((result: ng.IHttpPromiseCallbackArg<DealInformationBrief[]>)=>{
 					console.log(result);
 				});
