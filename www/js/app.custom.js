@@ -80,6 +80,22 @@ var OurDeal;
         .config(configApp);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=app.js.map
+var OurDeal;
+(function (OurDeal) {
+    var DealInformationBrief = (function () {
+        function DealInformationBrief() {
+        }
+        return DealInformationBrief;
+    })();
+    OurDeal.DealInformationBrief = DealInformationBrief;
+    var DealInformationDetailed = (function () {
+        function DealInformationDetailed() {
+        }
+        return DealInformationDetailed;
+    })();
+    OurDeal.DealInformationDetailed = DealInformationDetailed;
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_information_brief.js.map
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
@@ -181,22 +197,6 @@ var OurDeal;
     angular.module('OurDeal').controller('PlaylistCtrl', PlaylistCtrl);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=playlist_controller.js.map
-var OurDeal;
-(function (OurDeal) {
-    var DealInformationBrief = (function () {
-        function DealInformationBrief() {
-        }
-        return DealInformationBrief;
-    })();
-    OurDeal.DealInformationBrief = DealInformationBrief;
-    var DealInformationDetailed = (function () {
-        function DealInformationDetailed() {
-        }
-        return DealInformationDetailed;
-    })();
-    OurDeal.DealInformationDetailed = DealInformationDetailed;
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=deal_information_brief.js.map
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
