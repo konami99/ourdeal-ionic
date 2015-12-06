@@ -6,8 +6,14 @@ var OurDeal;
 (function (OurDeal) {
     'user strict';
     var LandingCtrl = (function () {
-        function LandingCtrl() {
+        function LandingCtrl(serchService) {
+            this.serchService = serchService;
+            this.serchService.check('https://script.google.com/macros/s/AKfycbzPg5maTWOvH_CxrvFu5OSqXLJHVKa3kiUfMDrUlbEY/dev')
+                .then(function (result) {
+                console.log(result);
+            });
         }
+        LandingCtrl.$inject = ['SearchService'];
         return LandingCtrl;
     })();
     OurDeal.LandingCtrl = LandingCtrl;
