@@ -75,9 +75,20 @@ module OurDeal {
 					controllerAs: 'playlistc'
 				}
 			}
-		});
+		})
 		
-		$urlRouterProvider.otherwise('/app/playlists');
+		.state('app.landing', {
+			url: '/',
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/landing.html',
+					controller: 'LandingCtrl',
+					controllerAs: 'landingc'
+				}
+			}
+		})
+		
+		$urlRouterProvider.otherwise('/app/');
 	}
 	
 	angular.module('OurDeal', ['ionic'])
