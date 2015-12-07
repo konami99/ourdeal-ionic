@@ -16,7 +16,7 @@ module OurDeal {
 		}
 		
 		check(address:string) : ng.IPromise<ng.IHttpPromiseCallbackArg<DealInformationBrief[]>>{
-			return this.$http.get(address);
+			return this.$http.get(address, {cache: true});
 		}
 	}
 	

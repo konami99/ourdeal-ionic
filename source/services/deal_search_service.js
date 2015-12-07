@@ -9,7 +9,7 @@ var OurDeal;
             this.$http = $http;
         }
         SearchService.prototype.check = function (address) {
-            return this.$http.get(address);
+            return this.$http.get(address, { cache: true });
         };
         SearchService.$inject = ['$http'];
         return SearchService;
