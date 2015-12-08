@@ -1,13 +1,13 @@
 <ion-view view-title="OurDeal">
   <ion-content>
-     <div class="list card" ng-repeat="d in landingc.deals">
+     <div class="list card" collection-repeat="d in landingc.deals">
 
       <div class="item item-text-wrap">
         <h2>{{ d.title }}</h2>
       </div>
     
       <div class="item item-image">
-        <a href="/#/app/deal/{{d.dealid}}">
+        <a href="#/app/deal/{{d.dealid}}">
           <img ng-src="http://ourdeal.imgix.net/files/deals/{{d.dealguid}}/{{d.primaryimage}}?auto=format" width="100%" class="img-responsive">
         </a>
       </div>
