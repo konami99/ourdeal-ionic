@@ -72,6 +72,16 @@ var OurDeal;
                     controllerAs: 'landingc'
                 }
             }
+        })
+            .state('app.deal', {
+            url: '/deal/:dealid',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/deal.html',
+                    controller: 'DealCtrl',
+                    controllerAs: 'dealc'
+                }
+            }
         });
         $urlRouterProvider.otherwise('/app/');
     }

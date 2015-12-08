@@ -16,6 +16,7 @@
         "source/controllers/playlists_controller.ts",
         "source/controllers/playlist_controller.ts",
         "source/controllers/landing_controller.ts",
+        "source/controllers/deal_controller.ts",
         "source/services/deal_search_service.ts",
         "source/models/deal_information_brief.ts"
     ],
