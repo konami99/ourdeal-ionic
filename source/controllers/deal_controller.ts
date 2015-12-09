@@ -6,12 +6,16 @@
 
 module OurDeal {
 	'user strict';
+	interface IRouteParams extends ng.ui.IStateParamsService {
+		dealid : number;
+	}
 	
 	export class DealCtrl {
 		//private deals : DealInformationBrief[];
 		
-		//static $inject = ['SearchService', '$ionicLoading'];
-		constructor() {
+		static $inject = ['$stateParams'];
+		constructor(private routeParams: IRouteParams, private dealId:number) {
+			this.dealId = routeParams.dealid;
 		}
 		
 		

@@ -134,10 +134,13 @@ var OurDeal;
 (function (OurDeal) {
     'user strict';
     var DealCtrl = (function () {
-        //private deals : DealInformationBrief[];
-        //static $inject = ['SearchService', '$ionicLoading'];
-        function DealCtrl() {
+        function DealCtrl(routeParams, dealId) {
+            this.routeParams = routeParams;
+            this.dealId = dealId;
+            this.dealId = routeParams.dealid;
         }
+        //private deals : DealInformationBrief[];
+        DealCtrl.$inject = ['$stateParams'];
         return DealCtrl;
     })();
     OurDeal.DealCtrl = DealCtrl;
