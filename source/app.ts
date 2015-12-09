@@ -27,8 +27,6 @@ module OurDeal {
 	
 	configApp.$inject = ["$stateProvider", "$urlRouterProvider"];
 	function configApp($stateProvider:ng.ui.IStateProvider, $urlRouterProvider:ng.ui.IUrlRouterProvider) {
-		
-
 		$stateProvider
 		 .state('app', {
 			url: '/app',
@@ -37,7 +35,6 @@ module OurDeal {
 			controller: 'AppCtrl',
 			controllerAs: 'appc'
 		})
-		
 		.state('app.search', {
 			url: '/search',
 			views: {
@@ -46,7 +43,6 @@ module OurDeal {
 				}
 			}
 		})
-		
 		.state('app.browse', {
 			url: '/browse',
 			views: {
@@ -56,16 +52,15 @@ module OurDeal {
 			}
 			})
 		.state('app.playlists', {
-		url: '/playlists',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/playlists.html',
-				controller: 'PlaylistsCtrl',
-				controllerAs: 'playlistsc'
+			url: '/playlists',
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/playlists.html',
+					controller: 'PlaylistsCtrl',
+					controllerAs: 'playlistsc'
+				}
 			}
-		}
 		})
-		
 		.state('app.single', {
 			url: '/playlists/:playlistId',
 			views: {
@@ -75,9 +70,29 @@ module OurDeal {
 					controllerAs: 'playlistc'
 				}
 			}
+		})
+		.state('app.landing', {
+			url: '/',
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/landing.html',
+					controller: 'LandingCtrl',
+					controllerAs: 'landingc'
+				}
+			}
+		})
+		.state('app.deal', {
+			url: '/deal/:dealid',
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/deal.html',
+					controller: 'DealCtrl',
+					controllerAs: 'dealc'
+				}
+			}
 		});
 		
-		$urlRouterProvider.otherwise('/app/playlists');
+		$urlRouterProvider.otherwise('/app/');
 	}
 	
 	angular.module('OurDeal', ['ionic'])

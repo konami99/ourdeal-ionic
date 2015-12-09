@@ -3,6 +3,8 @@ module OurDeal {
 		DealID: number;	
 		Title: string;
 		PrimaryImage: string;
+		Price: number;
+		DealGUID: string;
 	}
 	
 	export class DealInformationDetailed {

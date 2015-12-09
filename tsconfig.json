@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "target": "ES5",
+        "declaration": false,
+        "noImplicitAny": true,
+        "removeComments": false,
+        "noLib": false,
+        "sourceMap": true,
+        "watch": true
+    },
+    "filesGlob": [],
+    "files": [
+        "source/app.ts",
+        "source/controllers/app_controller.ts",
+        "source/controllers/playlists_controller.ts",
+        "source/controllers/playlist_controller.ts",
+        "source/controllers/landing_controller.ts",
+        "source/controllers/deal_controller.ts",
+        "source/services/deal_search_service.ts",
+        "source/models/deal_information_brief.ts"
+    ],
+    "exclude": []
+}
