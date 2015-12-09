@@ -6,7 +6,7 @@
 
 module OurDeal {
 	'user strict';
-	interface IRouteParams extends ng.ui.IStateParamsService {
+	interface IStateParams extends ng.ui.IStateParamsService {
 		dealid : number;
 	}
 	
@@ -14,7 +14,7 @@ module OurDeal {
 		//private deals : DealInformationBrief[];
 		
 		static $inject = ['$stateParams'];
-		constructor(private routeParams: IRouteParams, private dealId:number) {
+		constructor(private routeParams: IStateParams, private dealId:number) {
 			this.dealId = routeParams.dealid;
 		}
 		
