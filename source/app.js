@@ -62,8 +62,28 @@ var OurDeal;
                     controllerAs: 'playlistc'
                 }
             }
+        })
+            .state('app.landing', {
+            url: '/',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/landing.html',
+                    controller: 'LandingCtrl',
+                    controllerAs: 'landingc'
+                }
+            }
+        })
+            .state('app.deal', {
+            url: '/deal/:dealid',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/deal.html',
+                    controller: 'DealCtrl',
+                    controllerAs: 'dealc'
+                }
+            }
         });
-        $urlRouterProvider.otherwise('/app/playlists');
+        $urlRouterProvider.otherwise('/app/');
     }
     angular.module('OurDeal', ['ionic'])
         .run(runApp)

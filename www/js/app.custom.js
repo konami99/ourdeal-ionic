@@ -62,14 +62,69 @@ var OurDeal;
                     controllerAs: 'playlistc'
                 }
             }
+        })
+            .state('app.landing', {
+            url: '/',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/landing.html',
+                    controller: 'LandingCtrl',
+                    controllerAs: 'landingc'
+                }
+            }
+        })
+            .state('app.deal', {
+            url: '/deal/:dealid',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/deal.html',
+                    controller: 'DealCtrl',
+                    controllerAs: 'dealc'
+                }
+            }
         });
-        $urlRouterProvider.otherwise('/app/playlists');
+        $urlRouterProvider.otherwise('/app/');
     }
     angular.module('OurDeal', ['ionic'])
         .run(runApp)
         .config(configApp);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=app.js.map
+var OurDeal;
+(function (OurDeal) {
+    var DealInformationBrief = (function () {
+        function DealInformationBrief() {
+        }
+        return DealInformationBrief;
+    })();
+    OurDeal.DealInformationBrief = DealInformationBrief;
+    var DealInformationDetailed = (function () {
+        function DealInformationDetailed() {
+        }
+        return DealInformationDetailed;
+    })();
+    OurDeal.DealInformationDetailed = DealInformationDetailed;
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_information_brief.js.map
+/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular-route.d.ts" />
+/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
+/// <reference path="../../typings/ionic/ionic.d.ts" />
+var OurDeal;
+(function (OurDeal) {
+    var SearchService = (function () {
+        function SearchService($http) {
+            this.$http = $http;
+        }
+        SearchService.prototype.check = function (address) {
+            return this.$http.get(address, { cache: true });
+        };
+        SearchService.$inject = ['$http'];
+        return SearchService;
+    })();
+    angular.module("OurDeal").service("SearchService", SearchService);
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_search_service.js.map
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
@@ -112,6 +167,58 @@ var OurDeal;
 /// <reference path="../../typings/ionic/ionic.d.ts" />
 var OurDeal;
 (function (OurDeal) {
+    'user strict';
+    var DealCtrl = (function () {
+        function DealCtrl(routeParams, dealId) {
+            this.routeParams = routeParams;
+            this.dealId = dealId;
+            this.dealId = routeParams.dealid;
+        }
+        //private deals : DealInformationBrief[];
+        DealCtrl.$inject = ['$stateParams'];
+        return DealCtrl;
+    })();
+    OurDeal.DealCtrl = DealCtrl;
+    angular.module('OurDeal').controller('DealCtrl', DealCtrl);
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_controller.js.map
+/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular-route.d.ts" />
+/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
+/// <reference path="../../typings/ionic/ionic.d.ts" />
+var OurDeal;
+(function (OurDeal) {
+    'user strict';
+    var LandingCtrl = (function () {
+        function LandingCtrl(serchService, $ionicLoading) {
+            var _this = this;
+            this.serchService = serchService;
+            $ionicLoading.show({
+                template: 'Loading...'
+            });
+            this.serchService.check('https://script.google.com/macros/s/AKfycbza1HDmXJPGvlKozybBVu4OVZkkG4zkMJNp_2skefl9EjyisBrN/exec')
+                .then(function (result) {
+                //console.log(result);
+                _this.deals = result.data;
+                console.log(_this.deals);
+            })
+                .finally(function () {
+                $ionicLoading.hide();
+            });
+        }
+        LandingCtrl.$inject = ['SearchService', '$ionicLoading'];
+        return LandingCtrl;
+    })();
+    OurDeal.LandingCtrl = LandingCtrl;
+    angular.module('OurDeal').controller('LandingCtrl', LandingCtrl);
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=landing_controller.js.map
+/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular-route.d.ts" />
+/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
+/// <reference path="../../typings/ionic/ionic.d.ts" />
+var OurDeal;
+(function (OurDeal) {
     'use strict';
     var PlaylistsCtrl = (function () {
         function PlaylistsCtrl() {
@@ -146,19 +253,3 @@ var OurDeal;
     angular.module('OurDeal').controller('PlaylistCtrl', PlaylistCtrl);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=playlist_controller.js.map
-var OurDeal;
-(function (OurDeal) {
-    var DealInformationBrief = (function () {
-        function DealInformationBrief() {
-        }
-        return DealInformationBrief;
-    })();
-    OurDeal.DealInformationBrief = DealInformationBrief;
-    var DealInformationDetailed = (function () {
-        function DealInformationDetailed() {
-        }
-        return DealInformationDetailed;
-    })();
-    OurDeal.DealInformationDetailed = DealInformationDetailed;
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=deal_information_brief.js.map
