@@ -82,6 +82,16 @@ var OurDeal;
                     controllerAs: 'dealc'
                 }
             }
+        })
+            .state('app.payment', {
+            url: '/payment/:dealid',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/payment.html',
+                    controller: 'PaymentCtrl',
+                    controllerAs: 'paymentc'
+                }
+            }
         });
         $urlRouterProvider.otherwise('/app/');
     }

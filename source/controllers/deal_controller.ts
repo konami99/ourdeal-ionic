@@ -18,7 +18,9 @@ module OurDeal {
 			this.dealId = routeParams.dealid;
 		}
 		
-		
+		goToPayment(): void{
+			
+		}
 	}	
 	angular.module('OurDeal').controller('DealCtrl', DealCtrl);
 

@@ -11,6 +11,8 @@ var OurDeal;
             this.dealId = dealId;
             this.dealId = routeParams.dealid;
         }
+        DealCtrl.prototype.goToPayment = function () {
+        };
         //private deals : DealInformationBrief[];
         DealCtrl.$inject = ['$stateParams'];
         return DealCtrl;
