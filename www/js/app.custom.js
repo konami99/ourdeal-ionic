@@ -166,7 +166,6 @@ var OurDeal;
             this.dealId = routeParams.dealid;
         }
         DealCtrl.prototype.goToPayment = function () {
-            console.log("payment");
             this.$state.go('app.payment', { dealid: this.dealId });
         };
         //private deals : DealInformationBrief[];

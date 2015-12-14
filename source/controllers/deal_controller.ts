@@ -19,7 +19,6 @@ module OurDeal {
 		}
 		
 		goToPayment(): void{
-			console.log("payment");
 			this.$state.go('app.payment', { dealid: this.dealId});
 		}
 	}	
