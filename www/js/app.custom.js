@@ -167,6 +167,7 @@ var OurDeal;
         }
         DealCtrl.prototype.goToPayment = function () {
             console.log("payment");
+            this.$state.go('app.payment', { dealid: this.dealId });
         };
         //private deals : DealInformationBrief[];
         DealCtrl.$inject = ['$stateParams', '$state'];
