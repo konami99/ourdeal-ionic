@@ -6,8 +6,8 @@ var OurDeal;
 (function (OurDeal) {
     'user strict';
     var DealCtrl = (function () {
-        function DealCtrl(routeParams, dealId) {
-            this.routeParams = routeParams;
+        function DealCtrl(routeParams, $state, dealId) {
+            this.$state = $state;
             this.dealId = dealId;
             this.dealId = routeParams.dealid;
         }
@@ -15,7 +15,7 @@ var OurDeal;
             console.log("payment");
         };
         //private deals : DealInformationBrief[];
-        DealCtrl.$inject = ['$stateParams'];
+        DealCtrl.$inject = ['$stateParams', '$state'];
         return DealCtrl;
     })();
     OurDeal.DealCtrl = DealCtrl;
