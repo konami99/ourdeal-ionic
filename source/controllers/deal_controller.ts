@@ -19,7 +19,7 @@ module OurDeal {
 		}
 		
 		goToPayment(): void{
-			
+			console.log("payment");
 		}
 	}	
 	angular.module('OurDeal').controller('DealCtrl', DealCtrl);
