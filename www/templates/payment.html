@@ -3,12 +3,12 @@
   <form action="/buy-something" method="post">
     <h1>Buy some things</h1>
   
-    <braintree-dropin></braintree-dropin>
-  
-    <input
-      type="submit"
-      value="Buy for $14"
-      />
+    <input ng-model="creditCard.number" placeholder="4111111111111111" />
+
+    <input ng-model="creditCard.expirationDate" placeholder="10/18" />
+
+    <input type="submit" value="Purchase" onClick="payButtonClicked()" />
+
   
   </form>
   </ion-content>
