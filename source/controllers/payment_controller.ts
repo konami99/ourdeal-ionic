@@ -7,12 +7,15 @@ module OurDeal {
 	'user strict';
 	
 	export class PaymentCtrl {
-		//private deals : DealInformationBrief[];
 		
-		//static $inject = ['$stateParams'];
-		//static $inject = ["$scope"];
-		constructor() {
-			
+		static $inject = ["$braintree"];
+		constructor($braintree:any) {
+			$braintree.getClientToken().success(function(token:any) {
+				console.log(token);
+				var client = new $braintree.api.Client({
+					clientToken: token
+				});
+			});
 		}
 	}	
 	angular.module('OurDeal').controller('PaymentCtrl', PaymentCtrl);

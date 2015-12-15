@@ -6,11 +6,15 @@ var OurDeal;
 (function (OurDeal) {
     'user strict';
     var PaymentCtrl = (function () {
-        //private deals : DealInformationBrief[];
-        //static $inject = ['$stateParams'];
-        //static $inject = ["$scope"];
-        function PaymentCtrl() {
+        function PaymentCtrl($braintree) {
+            $braintree.getClientToken().success(function (token) {
+                console.log(token);
+                var client = new $braintree.api.Client({
+                    clientToken: token
+                });
+            });
         }
+        PaymentCtrl.$inject = ["$braintree"];
         return PaymentCtrl;
     })();
     OurDeal.PaymentCtrl = PaymentCtrl;

@@ -199,11 +199,15 @@ var OurDeal;
 (function (OurDeal) {
     'user strict';
     var PaymentCtrl = (function () {
-        //private deals : DealInformationBrief[];
-        //static $inject = ['$stateParams'];
-        //static $inject = ["$scope"];
-        function PaymentCtrl() {
+        function PaymentCtrl($braintree) {
+            $braintree.getClientToken().success(function (token) {
+                console.log(token);
+                var client = new $braintree.api.Client({
+                    clientToken: token
+                });
+            });
         }
+        PaymentCtrl.$inject = ["$braintree"];
         return PaymentCtrl;
     })();
     OurDeal.PaymentCtrl = PaymentCtrl;
@@ -250,6 +254,22 @@ var OurDeal;
     angular.module('OurDeal').controller('PlaylistCtrl', PlaylistCtrl);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=playlist_controller.js.map
+var OurDeal;
+(function (OurDeal) {
+    var DealInformationBrief = (function () {
+        function DealInformationBrief() {
+        }
+        return DealInformationBrief;
+    })();
+    OurDeal.DealInformationBrief = DealInformationBrief;
+    var DealInformationDetailed = (function () {
+        function DealInformationDetailed() {
+        }
+        return DealInformationDetailed;
+    })();
+    OurDeal.DealInformationDetailed = DealInformationDetailed;
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_information_brief.js.map
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
@@ -269,19 +289,3 @@ var OurDeal;
     angular.module("OurDeal").service("SearchService", SearchService);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=deal_search_service.js.map
-var OurDeal;
-(function (OurDeal) {
-    var DealInformationBrief = (function () {
-        function DealInformationBrief() {
-        }
-        return DealInformationBrief;
-    })();
-    OurDeal.DealInformationBrief = DealInformationBrief;
-    var DealInformationDetailed = (function () {
-        function DealInformationDetailed() {
-        }
-        return DealInformationDetailed;
-    })();
-    OurDeal.DealInformationDetailed = DealInformationDetailed;
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=deal_information_brief.js.map
