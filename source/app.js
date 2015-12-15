@@ -17,8 +17,8 @@ var OurDeal;
             }
         });
     }
-    configApp.$inject = ["$stateProvider", "$urlRouterProvider"];
-    function configApp($stateProvider, $urlRouterProvider) {
+    configApp.$inject = ["$stateProvider", "$urlRouterProvider", "$ionicConfigProvider"];
+    function configApp($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         $stateProvider
             .state('app', {
             url: '/app',
@@ -94,6 +94,7 @@ var OurDeal;
             }
         });
         $urlRouterProvider.otherwise('/app/');
+        $ionicConfigProvider.navBar.alignTitle('center');
     }
     angular.module('OurDeal', ['ionic'])
         .run(runApp)

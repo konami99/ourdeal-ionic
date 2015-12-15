@@ -17,8 +17,8 @@ var OurDeal;
             }
         });
     }
-    configApp.$inject = ["$stateProvider", "$urlRouterProvider"];
-    function configApp($stateProvider, $urlRouterProvider) {
+    configApp.$inject = ["$stateProvider", "$urlRouterProvider", "$ionicConfigProvider"];
+    function configApp($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         $stateProvider
             .state('app', {
             url: '/app',
@@ -94,28 +94,13 @@ var OurDeal;
             }
         });
         $urlRouterProvider.otherwise('/app/');
+        $ionicConfigProvider.navBar.alignTitle('center');
     }
     angular.module('OurDeal', ['ionic'])
         .run(runApp)
         .config(configApp);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=app.js.map
-var OurDeal;
-(function (OurDeal) {
-    var DealInformationBrief = (function () {
-        function DealInformationBrief() {
-        }
-        return DealInformationBrief;
-    })();
-    OurDeal.DealInformationBrief = DealInformationBrief;
-    var DealInformationDetailed = (function () {
-        function DealInformationDetailed() {
-        }
-        return DealInformationDetailed;
-    })();
-    OurDeal.DealInformationDetailed = DealInformationDetailed;
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=deal_information_brief.js.map
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
@@ -192,9 +177,7 @@ var OurDeal;
             });
             this.serchService.check('https://script.google.com/macros/s/AKfycbza1HDmXJPGvlKozybBVu4OVZkkG4zkMJNp_2skefl9EjyisBrN/exec')
                 .then(function (result) {
-                //console.log(result);
                 _this.deals = result.data;
-                console.log(_this.deals);
             })
                 .finally(function () {
                 $ionicLoading.hide();
@@ -265,6 +248,22 @@ var OurDeal;
     angular.module('OurDeal').controller('PlaylistCtrl', PlaylistCtrl);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=playlist_controller.js.map
+var OurDeal;
+(function (OurDeal) {
+    var DealInformationBrief = (function () {
+        function DealInformationBrief() {
+        }
+        return DealInformationBrief;
+    })();
+    OurDeal.DealInformationBrief = DealInformationBrief;
+    var DealInformationDetailed = (function () {
+        function DealInformationDetailed() {
+        }
+        return DealInformationDetailed;
+    })();
+    OurDeal.DealInformationDetailed = DealInformationDetailed;
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_information_brief.js.map
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />

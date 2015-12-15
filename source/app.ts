@@ -25,8 +25,8 @@ module OurDeal {
 		});
 	}
 	
-	configApp.$inject = ["$stateProvider", "$urlRouterProvider"];
-	function configApp($stateProvider:ng.ui.IStateProvider, $urlRouterProvider:ng.ui.IUrlRouterProvider) {
+	configApp.$inject = ["$stateProvider", "$urlRouterProvider", "$ionicConfigProvider"];
+	function configApp($stateProvider:ng.ui.IStateProvider, $urlRouterProvider:ng.ui.IUrlRouterProvider, $ionicConfigProvider:ionic.utility.IonicConfigProvider) {
 		$stateProvider
 		 .state('app', {
 			url: '/app',
@@ -103,6 +103,8 @@ module OurDeal {
 		});
 		
 		$urlRouterProvider.otherwise('/app/');
+		
+		$ionicConfigProvider.navBar.alignTitle('center');
 	}
 	
 	angular.module('OurDeal', ['ionic'])
