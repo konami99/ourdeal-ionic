@@ -3,7 +3,6 @@
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
 /// <reference path="../../typings/ionic/ionic.d.ts" />
 
-
 module OurDeal {
 	'user strict';
 	
@@ -11,6 +10,7 @@ module OurDeal {
 		//private deals : DealInformationBrief[];
 		
 		//static $inject = ['$stateParams'];
+		//static $inject = ["$scope"];
 		constructor() {
 			
 		}

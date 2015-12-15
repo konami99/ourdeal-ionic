@@ -200,6 +200,7 @@ var OurDeal;
     var PaymentCtrl = (function () {
         //private deals : DealInformationBrief[];
         //static $inject = ['$stateParams'];
+        //static $inject = ["$scope"];
         function PaymentCtrl() {
         }
         return PaymentCtrl;
