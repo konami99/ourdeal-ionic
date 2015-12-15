@@ -102,6 +102,41 @@ var OurDeal;
         .constant('clientTokenPath', 'https://script.googleusercontent.com/macros/echo?user_content_key=BKVxIkgcNlhRBKNozswCjGuuQI70emQEUjrglyJ_ezvSeL9rSp0UDkI6kcLjDQw8eXZPhTK-tVat7yf8Xlm6njPxlez2wpc7m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNGitsND9kT-eAhhbJJvQS8Yju48CoLx0uDM8Q8fA6aMP36fsJbJJPpvDZK8eblHPjOmbnRGq-tk&lib=M1H49ebuAVAcbEEfD2DqHRoKMNz51Yx3E');
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=app.js.map
+var OurDeal;
+(function (OurDeal) {
+    var DealInformationBrief = (function () {
+        function DealInformationBrief() {
+        }
+        return DealInformationBrief;
+    })();
+    OurDeal.DealInformationBrief = DealInformationBrief;
+    var DealInformationDetailed = (function () {
+        function DealInformationDetailed() {
+        }
+        return DealInformationDetailed;
+    })();
+    OurDeal.DealInformationDetailed = DealInformationDetailed;
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_information_brief.js.map
+/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular-route.d.ts" />
+/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
+/// <reference path="../../typings/ionic/ionic.d.ts" />
+var OurDeal;
+(function (OurDeal) {
+    var SearchService = (function () {
+        function SearchService($http) {
+            this.$http = $http;
+        }
+        SearchService.prototype.check = function (address) {
+            return this.$http.get(address, { cache: true });
+        };
+        SearchService.$inject = ['$http'];
+        return SearchService;
+    })();
+    angular.module("OurDeal").service("SearchService", SearchService);
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_search_service.js.map
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
@@ -207,6 +242,9 @@ var OurDeal;
                 });
             });
         }
+        PaymentCtrl.prototype.payButtonClicked = function () {
+            console.log('payButtonClicked');
+        };
         PaymentCtrl.$inject = ["$braintree"];
         return PaymentCtrl;
     })();
@@ -254,38 +292,3 @@ var OurDeal;
     angular.module('OurDeal').controller('PlaylistCtrl', PlaylistCtrl);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=playlist_controller.js.map
-var OurDeal;
-(function (OurDeal) {
-    var DealInformationBrief = (function () {
-        function DealInformationBrief() {
-        }
-        return DealInformationBrief;
-    })();
-    OurDeal.DealInformationBrief = DealInformationBrief;
-    var DealInformationDetailed = (function () {
-        function DealInformationDetailed() {
-        }
-        return DealInformationDetailed;
-    })();
-    OurDeal.DealInformationDetailed = DealInformationDetailed;
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=deal_information_brief.js.map
-/// <reference path="../../typings/angularjs/angular.d.ts" />
-/// <reference path="../../typings/angularjs/angular-route.d.ts" />
-/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
-/// <reference path="../../typings/ionic/ionic.d.ts" />
-var OurDeal;
-(function (OurDeal) {
-    var SearchService = (function () {
-        function SearchService($http) {
-            this.$http = $http;
-        }
-        SearchService.prototype.check = function (address) {
-            return this.$http.get(address, { cache: true });
-        };
-        SearchService.$inject = ['$http'];
-        return SearchService;
-    })();
-    angular.module("OurDeal").service("SearchService", SearchService);
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=deal_search_service.js.map

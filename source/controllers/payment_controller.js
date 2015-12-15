@@ -14,6 +14,9 @@ var OurDeal;
                 });
             });
         }
+        PaymentCtrl.prototype.payButtonClicked = function () {
+            console.log('payButtonClicked');
+        };
         PaymentCtrl.$inject = ["$braintree"];
         return PaymentCtrl;
     })();

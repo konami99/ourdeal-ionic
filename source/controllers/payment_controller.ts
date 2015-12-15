@@ -17,6 +17,10 @@ module OurDeal {
 				});
 			});
 		}
+		
+		payButtonClicked() {
+			console.log('payButtonClicked');
+		}
 	}	
 	angular.module('OurDeal').controller('PaymentCtrl', PaymentCtrl);
 
