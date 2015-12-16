@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view cache-view="false">
   <ion-content>
     <div class="list">
       <label class="item item-input item-floating-label">
@@ -13,7 +13,9 @@
         <span class="input-label">CVV</span>
         <input type="text" placeholder="CVV">
       </label>
-      <input type="button" value="Purchase" ng-click="paymentc.payButtonClicked()" />
+      <button class="button button-full button-positive" ng-click="paymentc.payButtonClicked()">
+        Confirm Purchase
+      </button>
     </div>
   </ion-content>
 </ion-view>
