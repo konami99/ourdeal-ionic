@@ -16,6 +16,7 @@ module OurDeal {
 		static $inject = ["$braintree"];
 		constructor($braintree:any, private braintreeClient: any) {
 			$braintree.getClientToken().success((token:any)=>{
+				console.log(token);
 				this.braintreeClient = new $braintree.api.Client({
 					clientToken: token
 				});

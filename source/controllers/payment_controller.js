@@ -14,6 +14,7 @@ var OurDeal;
                 expirationDate: ''
             };
             $braintree.getClientToken().success(function (token) {
+                console.log(token);
                 _this.braintreeClient = new $braintree.api.Client({
                     clientToken: token
                 });
