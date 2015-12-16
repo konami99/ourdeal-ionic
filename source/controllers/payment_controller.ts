@@ -8,11 +8,15 @@ module OurDeal {
 	
 	export class PaymentCtrl {
 		
+		private creditCard = {
+			number: '',
+			expirationDate: ''
+		};
+		
 		static $inject = ["$braintree"];
-		constructor($braintree:any) {
-			$braintree.getClientToken().success(function(token:any) {
-				console.log(token);
-				var client = new $braintree.api.Client({
+		constructor($braintree:any, private braintreeClient: any) {
+			$braintree.getClientToken().success((token:any)=>{
+				this.braintreeClient = new $braintree.api.Client({
 					clientToken: token
 				});
 			});
@@ -20,6 +24,12 @@ module OurDeal {
 		
 		payButtonClicked() {
 			console.log('payButtonClicked');
+			this.braintreeClient.tokenizeCard({
+				number: this.creditCard.number,
+				expirationDate: this.creditCard.expirationDate
+			}, function(err:any, nonce:any){
+				console.log(nonce)
+			});
 		}
 	}	
 	angular.module('OurDeal').controller('PaymentCtrl', PaymentCtrl);
