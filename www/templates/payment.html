@@ -1,15 +1,19 @@
 <ion-view>
   <ion-content>
-  <form action="/buy-something" method="post">
-    <h1>Buy some things</h1>
-  
-    <input ng-model="paymentc.creditCard.number" placeholder="4111111111111111" />
-
-    <input ng-model="paymentc.creditCard.expirationDate" placeholder="10/18" />
-
-    <input type="button" value="Purchase" ng-click="paymentc.payButtonClicked()" />
-
-  
-  </form>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Card number</span>
+        <input type="text" ng-model="paymentc.creditCard.number" placeholder="Card number">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Expiration date</span>
+        <input type="text" ng-model="paymentc.creditCard.expirationDate" placeholder="Expiration date">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">CVV</span>
+        <input type="text" placeholder="CVV">
+      </label>
+      <input type="button" value="Purchase" ng-click="paymentc.payButtonClicked()" />
+    </div>
   </ion-content>
 </ion-view>
