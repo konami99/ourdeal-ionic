@@ -6,7 +6,7 @@ var OurDeal;
 (function (OurDeal) {
     'user strict';
     var LandingCtrl = (function () {
-        function LandingCtrl(serchService, $ionicLoading) {
+        function LandingCtrl(serchService, $ionicLoading, $rootScope, $cordovaNetwork) {
             var _this = this;
             this.serchService = serchService;
             $ionicLoading.show({
@@ -20,7 +20,7 @@ var OurDeal;
                 $ionicLoading.hide();
             });
         }
-        LandingCtrl.$inject = ['SearchService', '$ionicLoading'];
+        LandingCtrl.$inject = ['SearchService', '$ionicLoading', '$rootScope', '$cordovaNetwork'];
         return LandingCtrl;
     })();
     OurDeal.LandingCtrl = LandingCtrl;

@@ -96,7 +96,7 @@ var OurDeal;
         $urlRouterProvider.otherwise('/app/');
         $ionicConfigProvider.navBar.alignTitle('center');
     }
-    angular.module('OurDeal', ['ionic', 'braintree-angular'])
+    angular.module('OurDeal', ['ionic', 'braintree-angular', 'ngCordova'])
         .run(runApp)
         .config(configApp)
         .constant('clientTokenPath', 'https://script.googleusercontent.com/macros/echo?user_content_key=BKVxIkgcNlhRBKNozswCjGuuQI70emQEUjrglyJ_ezvSeL9rSp0UDkI6kcLjDQw8eXZPhTK-tVat7yf8Xlm6njPxlez2wpc7m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNGitsND9kT-eAhhbJJvQS8Yju48CoLx0uDM8Q8fA6aMP36fsJbJJPpvDZK8eblHPjOmbnRGq-tk&lib=M1H49ebuAVAcbEEfD2DqHRoKMNz51Yx3E');
