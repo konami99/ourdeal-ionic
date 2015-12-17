@@ -12,12 +12,7 @@ module OurDeal {
 		
 		static $inject = ['SearchService', '$ionicLoading', '$rootScope', '$cordovaNetwork', '$ionicPlatform'];
 		constructor(private serchService: ISearchService, $ionicLoading:ionic.loading.IonicLoadingService, $rootScope:any, $cordovaNetwork:any, $ionicPlatform:any) {
-			$ionicPlatform.ready(function() {
-				
-					var type= $cordovaNetwork.getNetwork();
-					console.log(type);
-				
-			});
+			
 			
 			
 			$ionicLoading.show({
@@ -30,6 +25,13 @@ module OurDeal {
 				.finally(function(){
 					$ionicLoading.hide();
 				});
+				
+			$ionicPlatform.ready(function() {
+				
+					var type= $cordovaNetwork.isOnline();
+					console.log(type);
+				
+			});
 		}
 		
 		

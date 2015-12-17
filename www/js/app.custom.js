@@ -173,10 +173,6 @@ var OurDeal;
         function LandingCtrl(serchService, $ionicLoading, $rootScope, $cordovaNetwork, $ionicPlatform) {
             var _this = this;
             this.serchService = serchService;
-            $ionicPlatform.ready(function () {
-                var type = $cordovaNetwork.getNetwork();
-                console.log(type);
-            });
             $ionicLoading.show({
                 template: 'Loading...'
             });
@@ -186,6 +182,10 @@ var OurDeal;
             })
                 .finally(function () {
                 $ionicLoading.hide();
+            });
+            $ionicPlatform.ready(function () {
+                var type = $cordovaNetwork.isOnline();
+                console.log(type);
             });
         }
         LandingCtrl.$inject = ['SearchService', '$ionicLoading', '$rootScope', '$cordovaNetwork', '$ionicPlatform'];
