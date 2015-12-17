@@ -102,6 +102,22 @@ var OurDeal;
         .constant('clientTokenPath', 'https://script.googleusercontent.com/macros/echo?user_content_key=BKVxIkgcNlhRBKNozswCjGuuQI70emQEUjrglyJ_ezvSeL9rSp0UDkI6kcLjDQw8eXZPhTK-tVat7yf8Xlm6njPxlez2wpc7m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNGitsND9kT-eAhhbJJvQS8Yju48CoLx0uDM8Q8fA6aMP36fsJbJJPpvDZK8eblHPjOmbnRGq-tk&lib=M1H49ebuAVAcbEEfD2DqHRoKMNz51Yx3E');
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=app.js.map
+var OurDeal;
+(function (OurDeal) {
+    var DealInformationBrief = (function () {
+        function DealInformationBrief() {
+        }
+        return DealInformationBrief;
+    })();
+    OurDeal.DealInformationBrief = DealInformationBrief;
+    var DealInformationDetailed = (function () {
+        function DealInformationDetailed() {
+        }
+        return DealInformationDetailed;
+    })();
+    OurDeal.DealInformationDetailed = DealInformationDetailed;
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_information_brief.js.map
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
@@ -170,12 +186,31 @@ var OurDeal;
 (function (OurDeal) {
     'user strict';
     var LandingCtrl = (function () {
-        function LandingCtrl(serchService, $ionicLoading, $rootScope, $cordovaNetwork, $ionicPlatform) {
+        function LandingCtrl(serchService, $ionicLoading, $ionicPlatform, $cordovaNetwork, $rootScope) {
             var _this = this;
             this.serchService = serchService;
+            $ionicPlatform.ready(function () {
+                //if($cordovaNetwork.isOffline()){
+                $ionicLoading.show({
+                    template: $cordovaNetwork.getNetwork()
+                });
+                //}
+                //console.log(navigator.onLine);
+                //var type= $cordovaNetwork.getNetwork();
+                //console.log(navigator.connection);
+                /*
+                if($cordovaNetwork.isOffline()){
+                    $ionicLoading.show({
+                        template: 'Offline...'
+                    });
+                }
+            */
+            });
+            /*
             $ionicLoading.show({
                 template: 'Loading...'
             });
+            */
             this.serchService.check('https://script.google.com/macros/s/AKfycbza1HDmXJPGvlKozybBVu4OVZkkG4zkMJNp_2skefl9EjyisBrN/exec')
                 .then(function (result) {
                 _this.deals = result.data;
@@ -183,12 +218,8 @@ var OurDeal;
                 .finally(function () {
                 $ionicLoading.hide();
             });
-            $ionicPlatform.ready(function () {
-                var type = $cordovaNetwork.isOnline();
-                console.log(type);
-            });
         }
-        LandingCtrl.$inject = ['SearchService', '$ionicLoading', '$rootScope', '$cordovaNetwork', '$ionicPlatform'];
+        LandingCtrl.$inject = ['SearchService', '$ionicLoading', '$ionicPlatform', '$cordovaNetwork', '$rootScope'];
         return LandingCtrl;
     })();
     OurDeal.LandingCtrl = LandingCtrl;
@@ -273,22 +304,6 @@ var OurDeal;
     angular.module('OurDeal').controller('PlaylistCtrl', PlaylistCtrl);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=playlist_controller.js.map
-var OurDeal;
-(function (OurDeal) {
-    var DealInformationBrief = (function () {
-        function DealInformationBrief() {
-        }
-        return DealInformationBrief;
-    })();
-    OurDeal.DealInformationBrief = DealInformationBrief;
-    var DealInformationDetailed = (function () {
-        function DealInformationDetailed() {
-        }
-        return DealInformationDetailed;
-    })();
-    OurDeal.DealInformationDetailed = DealInformationDetailed;
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=deal_information_brief.js.map
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />

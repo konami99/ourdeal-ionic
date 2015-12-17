@@ -6,12 +6,31 @@ var OurDeal;
 (function (OurDeal) {
     'user strict';
     var LandingCtrl = (function () {
-        function LandingCtrl(serchService, $ionicLoading, $rootScope, $cordovaNetwork, $ionicPlatform) {
+        function LandingCtrl(serchService, $ionicLoading, $ionicPlatform, $cordovaNetwork, $rootScope) {
             var _this = this;
             this.serchService = serchService;
+            $ionicPlatform.ready(function () {
+                //if($cordovaNetwork.isOffline()){
+                $ionicLoading.show({
+                    template: $cordovaNetwork.getNetwork()
+                });
+                //}
+                //console.log(navigator.onLine);
+                //var type= $cordovaNetwork.getNetwork();
+                //console.log(navigator.connection);
+                /*
+                if($cordovaNetwork.isOffline()){
+                    $ionicLoading.show({
+                        template: 'Offline...'
+                    });
+                }
+            */
+            });
+            /*
             $ionicLoading.show({
                 template: 'Loading...'
             });
+            */
             this.serchService.check('https://script.google.com/macros/s/AKfycbza1HDmXJPGvlKozybBVu4OVZkkG4zkMJNp_2skefl9EjyisBrN/exec')
                 .then(function (result) {
                 _this.deals = result.data;
@@ -19,12 +38,8 @@ var OurDeal;
                 .finally(function () {
                 $ionicLoading.hide();
             });
-            $ionicPlatform.ready(function () {
-                var type = $cordovaNetwork.isOnline();
-                console.log(type);
-            });
         }
-        LandingCtrl.$inject = ['SearchService', '$ionicLoading', '$rootScope', '$cordovaNetwork', '$ionicPlatform'];
+        LandingCtrl.$inject = ['SearchService', '$ionicLoading', '$ionicPlatform', '$cordovaNetwork', '$rootScope'];
         return LandingCtrl;
     })();
     OurDeal.LandingCtrl = LandingCtrl;
