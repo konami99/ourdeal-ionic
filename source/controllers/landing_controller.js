@@ -6,9 +6,13 @@ var OurDeal;
 (function (OurDeal) {
     'user strict';
     var LandingCtrl = (function () {
-        function LandingCtrl(serchService, $ionicLoading, $rootScope, $cordovaNetwork) {
+        function LandingCtrl(serchService, $ionicLoading, $rootScope, $cordovaNetwork, $ionicPlatform) {
             var _this = this;
             this.serchService = serchService;
+            $ionicPlatform.ready(function () {
+                var type = $cordovaNetwork.getNetwork();
+                console.log(type);
+            });
             $ionicLoading.show({
                 template: 'Loading...'
             });
@@ -20,7 +24,7 @@ var OurDeal;
                 $ionicLoading.hide();
             });
         }
-        LandingCtrl.$inject = ['SearchService', '$ionicLoading', '$rootScope', '$cordovaNetwork'];
+        LandingCtrl.$inject = ['SearchService', '$ionicLoading', '$rootScope', '$cordovaNetwork', '$ionicPlatform'];
         return LandingCtrl;
     })();
     OurDeal.LandingCtrl = LandingCtrl;

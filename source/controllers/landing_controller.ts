@@ -10,8 +10,16 @@ module OurDeal {
 	export class LandingCtrl {
 		private deals : DealInformationBrief[];
 		
-		static $inject = ['SearchService', '$ionicLoading', '$rootScope', '$cordovaNetwork'];
-		constructor(private serchService: ISearchService, $ionicLoading:ionic.loading.IonicLoadingService, $rootScope:any, $cordovaNetwork:any) {
+		static $inject = ['SearchService', '$ionicLoading', '$rootScope', '$cordovaNetwork', '$ionicPlatform'];
+		constructor(private serchService: ISearchService, $ionicLoading:ionic.loading.IonicLoadingService, $rootScope:any, $cordovaNetwork:any, $ionicPlatform:any) {
+			$ionicPlatform.ready(function() {
+				
+					var type= $cordovaNetwork.getNetwork();
+					console.log(type);
+				
+			});
+			
+			
 			$ionicLoading.show({
 				template: 'Loading...'
 			});
