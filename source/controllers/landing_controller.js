@@ -9,28 +9,9 @@ var OurDeal;
         function LandingCtrl(serchService, $ionicLoading, $ionicPlatform, $cordovaNetwork, $rootScope) {
             var _this = this;
             this.serchService = serchService;
-            $ionicPlatform.ready(function () {
-                //if($cordovaNetwork.isOffline()){
-                $ionicLoading.show({
-                    template: $cordovaNetwork.getNetwork()
-                });
-                //}
-                //console.log(navigator.onLine);
-                //var type= $cordovaNetwork.getNetwork();
-                //console.log(navigator.connection);
-                /*
-                if($cordovaNetwork.isOffline()){
-                    $ionicLoading.show({
-                        template: 'Offline...'
-                    });
-                }
-            */
-            });
-            /*
             $ionicLoading.show({
                 template: 'Loading...'
             });
-            */
             this.serchService.check('https://script.google.com/macros/s/AKfycbza1HDmXJPGvlKozybBVu4OVZkkG4zkMJNp_2skefl9EjyisBrN/exec')
                 .then(function (result) {
                 _this.deals = result.data;

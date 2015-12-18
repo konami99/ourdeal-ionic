@@ -13,29 +13,11 @@ module OurDeal {
 		static $inject = ['SearchService', '$ionicLoading', '$ionicPlatform', '$cordovaNetwork', '$rootScope'];
 		constructor(private serchService: ISearchService, $ionicLoading:ionic.loading.IonicLoadingService, $ionicPlatform:ionic.platform.IonicPlatformService, $cordovaNetwork:any, $rootScope:any) {
 			
-			$ionicPlatform.ready(function() {
-				//if($cordovaNetwork.isOffline()){
-					$ionicLoading.show({
-						template: $cordovaNetwork.getNetwork()
-					});
-				//}
-				
-					//console.log(navigator.onLine);
-					//var type= $cordovaNetwork.getNetwork();
-					//console.log(navigator.connection);
-					/*
-					if($cordovaNetwork.isOffline()){
-						$ionicLoading.show({
-							template: 'Offline...'
-						});
-					}
-				*/
-			});
-			/*
+			
 			$ionicLoading.show({
 				template: 'Loading...'
 			});
-			*/
+			
 			this.serchService.check('https://script.google.com/macros/s/AKfycbza1HDmXJPGvlKozybBVu4OVZkkG4zkMJNp_2skefl9EjyisBrN/exec')
 				.then((result: ng.IHttpPromiseCallbackArg<DealInformationBrief[]>)=>{
 					this.deals= result.data;

@@ -6,14 +6,15 @@
 interface Window {
     cordova: any;
     StatusBar: any;
+	Connection: any;
 }
 
 
 module OurDeal {
 	'use strict';
 	
-	runApp.$inject = ["$ionicPlatform"];
-	function runApp($ionicPlatform:ionic.platform.IonicPlatformService) {
+	runApp.$inject = ["$ionicPlatform", "$ionicPopup", "$cordovaNetwork"];
+	function runApp($ionicPlatform:ionic.platform.IonicPlatformService, $ionicPopup:ionic.popup.IonicPopupService, $cordovaNetwork:any) {
 		$ionicPlatform.ready(() => {
 			if (window.cordova && window.cordova.plugins.Keyboard) {
 				window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -22,6 +23,20 @@ module OurDeal {
 			if (window.StatusBar) {
 				window.StatusBar.styleDefault();
 			}
+			
+			if(window.Connection) {
+                if($cordovaNetwork.getNetwork() == Connection.NONE) {
+                    $ionicPopup.confirm({
+                        title: "Internet Disconnected",
+                        template: "The internet is disconnected on your device."
+                    })
+                    .then(function(result:any) {
+                        if(!result) {
+                            ionic.Platform.exitApp();
+                        }
+                    });
+                }
+            }
 		});
 	}
 	
