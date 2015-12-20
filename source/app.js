@@ -6,7 +6,7 @@ var OurDeal;
 (function (OurDeal) {
     'use strict';
     runApp.$inject = ["$ionicPlatform", "$ionicPopup", "$cordovaNetwork"];
-    function runApp($ionicPlatform, $ionicPopup, $cordovaNetwork) {
+    function runApp($ionicPlatform, $ionicPopup, $cordovaNetwork, UAirship) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -28,6 +28,36 @@ var OurDeal;
                     });
                 }
             }
+            // Register for any Urban Airship events
+            document.addEventListener("urbanairship.registration", function (event) {
+                if (event.error) {
+                    console.log('There was an error registering for push notifications');
+                }
+                else {
+                    console.log("Registered with ID: " + event.channelID);
+                }
+            });
+            document.addEventListener("urbanairship.push", function (event) {
+                console.log("Incoming push: " + event.message);
+            });
+            // Set tags on a device, that you can push to
+            UAirship.setTags(["loves_cats", "shops_for_games"], function () {
+                UAirship.getTags(function (tags) {
+                    tags.forEach(function (tag) {
+                        console.log("Tag: " + tag);
+                    });
+                });
+            });
+            // Set an alias, this lets you tie a device to a user in your system
+            UAirship.setAlias("awesomeuser22", function () {
+                UAirship.getAlias(function (alias) {
+                    console.log("The user formerly known as " + alias);
+                });
+            });
+            // Enable user notifications (will prompt the user to accept push notifications)
+            UAirship.setUserNotificationsEnabled(true, function (enabled) {
+                console.log("User notifications are enabled! Fire away!");
+            });
         });
     }
     configApp.$inject = ["$stateProvider", "$urlRouterProvider", "$ionicConfigProvider"];
