@@ -10,21 +10,23 @@ module OurDeal {
 	export class LandingCtrl {
 		private deals : DealInformationBrief[];
 		
-		static $inject = ['SearchService', '$ionicLoading'];
-		constructor(private serchService: ISearchService, $ionicLoading:ionic.loading.IonicLoadingService) {
+		static $inject = ['SearchService', '$ionicLoading', '$ionicPlatform', '$cordovaNetwork', '$rootScope'];
+		constructor(private serchService: ISearchService, $ionicLoading:ionic.loading.IonicLoadingService, $ionicPlatform:ionic.platform.IonicPlatformService, $cordovaNetwork:any, $rootScope:any) {
+			
+			
 			$ionicLoading.show({
 				template: 'Loading...'
 			});
+			
 			this.serchService.check('https://script.google.com/macros/s/AKfycbza1HDmXJPGvlKozybBVu4OVZkkG4zkMJNp_2skefl9EjyisBrN/exec')
 				.then((result: ng.IHttpPromiseCallbackArg<DealInformationBrief[]>)=>{
-					//console.log(result);
 					this.deals= result.data;
-					console.log(this.deals);
-					
 				})
 				.finally(function(){
 					$ionicLoading.hide();
 				});
+				
+			
 		}
 		
 		

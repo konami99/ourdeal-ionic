@@ -1,0 +1,21 @@
+<ion-view cache-view="false">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Card number</span>
+        <input type="text" ng-model="paymentc.creditCard.number" placeholder="Card number">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Expiration date</span>
+        <input type="text" ng-model="paymentc.creditCard.expirationDate" placeholder="Expiration date">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">CVV</span>
+        <input type="text" placeholder="CVV">
+      </label>
+      <button class="button button-full button-positive" ng-click="paymentc.payButtonClicked()">
+        Confirm Purchase
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

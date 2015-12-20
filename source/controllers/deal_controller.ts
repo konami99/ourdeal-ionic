@@ -13,12 +13,14 @@ module OurDeal {
 	export class DealCtrl {
 		//private deals : DealInformationBrief[];
 		
-		static $inject = ['$stateParams'];
-		constructor(private routeParams: IStateParams, private dealId:number) {
+		static $inject = ['$stateParams', '$state'];
+		constructor(routeParams: IStateParams, private $state:ng.ui.IStateService, private dealId:number) {
 			this.dealId = routeParams.dealid;
 		}
 		
-		
+		goToPayment(): void{
+			this.$state.go('app.payment', { dealid: this.dealId});
+		}
 	}	
 	angular.module('OurDeal').controller('DealCtrl', DealCtrl);
 
