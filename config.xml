@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.ourdealionic169192" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>ourdeal-ionic</name>
-  <description>&#xD;
-        An Ionic Framework and Cordova project.&#xD;
+  <description>&#xD;&#xD;
+        An Ionic Framework and Cordova project.&#xD;&#xD;
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">&#xD;
-      Ionic Framework Team&#xD;
+  <author email="hi@ionicframework" href="http://ionicframework.com/">&#xD;&#xD;
+      Ionic Framework Team&#xD;&#xD;
     </author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -16,13 +16,11 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
-  
-  <preference name="com.urbanairship.development_app_key" value="y-xmoOARTa2UTJ4M3ns8oA" />
-  <preference name="com.urbanairship.development_app_secret" value="vP8Kcb7KQpmnAArOFZJ5Fw" />
-  <preference name="com.urbanairship.in_production" value="false" />
-  <preference name="com.urbanairship.in_production" value="true" />
-  <preference name="com.urbanairship.gcm_sender" value="1066321064030" />
-  
+  <preference name="com.urbanairship.development_app_key" value="y-xmoOARTa2UTJ4M3ns8oA"/>
+  <preference name="com.urbanairship.development_app_secret" value="vP8Kcb7KQpmnAArOFZJ5Fw"/>
+  <preference name="com.urbanairship.in_production" value="false"/>
+  <preference name="com.urbanairship.in_production" value="true"/>
+  <preference name="com.urbanairship.gcm_sender" value="1066321064030"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
