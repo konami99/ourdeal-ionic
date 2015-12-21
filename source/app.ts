@@ -14,7 +14,7 @@ module OurDeal {
 	'use strict';
 	
 	runApp.$inject = ["$ionicPlatform", "$ionicPopup", "$cordovaNetwork"];
-	function runApp($ionicPlatform:ionic.platform.IonicPlatformService, $ionicPopup:ionic.popup.IonicPopupService, $cordovaNetwork:any, UAirship:any) {
+	function runApp($ionicPlatform:ionic.platform.IonicPlatformService, $ionicPopup:ionic.popup.IonicPopupService, $cordovaNetwork:any) {
 		$ionicPlatform.ready(() => {
 			if (window.cordova && window.cordova.plugins.Keyboard) {
 				window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
