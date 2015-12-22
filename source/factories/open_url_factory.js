@@ -5,15 +5,15 @@
 var OurDeal;
 (function (OurDeal) {
     var OpenURLFactory = (function () {
-        function OpenURLFactory($http) {
-            this.$http = $http;
+        function OpenURLFactory($log, $location, $rootScope, $ionicHistory) {
+            this.$log = $log;
+            this.$location = $location;
+            this.$rootScope = $rootScope;
+            this.$ionicHistory = $ionicHistory;
         }
-        OpenURLFactory.prototype.check = function (address) {
-            return this.$http.get(address, { cache: true });
-        };
-        OpenURLFactory.$inject = ['$http'];
+        OpenURLFactory.$inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
         return OpenURLFactory;
     })();
-    angular.module("OurDeal").service("SearchService", SearchService);
+    angular.module("OurDeal").factory("OpenURLFactory", OpenURLFactory);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=open_url_factory.js.map

@@ -5,16 +5,14 @@
 
 module OurDeal {
 	class OpenURLFactory {
-		static $inject = ['$http'];
+		static $inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
 		
-		constructor(private $http : ng.IHttpService){
+		constructor(private $log: ng.ILogService, private $location: ng.ILocationService, private $rootScope: ng.IRootScopeService, private $ionicHistory: ionic.navigation.IonicHistoryService){
 			
 		}
 		
-		check(address:string) : ng.IPromise<ng.IHttpPromiseCallbackArg<DealInformationBrief[]>>{
-			return this.$http.get(address, {cache: true});
-		}
+		
 	}
 	
-	angular.module("OurDeal").service("SearchService", SearchService);
+	angular.module("OurDeal").factory("OpenURLFactory", OpenURLFactory);
 }
