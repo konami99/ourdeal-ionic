@@ -38,6 +38,15 @@ module OurDeal {
                 }
             }
             
+            if (window.cordova) {
+                // Create a sticky event for handling the app being opened via a custom URL
+                window.cordova.addStickyDocumentEventHandler('handleopenurl');
+            }
+
+            function handleOpenURL (url) {
+                window.cordova.fireDocumentEvent('handleopenurl', { url: url });
+            };
+            
             // Register for any Urban Airship events
             document.addEventListener("urbanairship.registration", function (event) {
                 if (event.error) {
