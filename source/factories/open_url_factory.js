@@ -11,6 +11,7 @@ var OurDeal;
             this.$location = $location;
             this.$rootScope = $rootScope;
             this.$ionicHistory = $ionicHistory;
+            console.log('OpenURLService initiated');
         }
         OpenURLService.prototype.openURL = function (url) {
             this.$log.debug('Handling open URL ' + url);
@@ -37,5 +38,6 @@ var OurDeal;
         return OpenURLService;
     })();
     OurDeal.OpenURLService = OpenURLService;
+    angular.module("OurDeal").service("OpenURLService", OpenURLService);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=open_url_factory.js.map

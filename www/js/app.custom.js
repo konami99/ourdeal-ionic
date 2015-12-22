@@ -5,8 +5,8 @@
 var OurDeal;
 (function (OurDeal) {
     'use strict';
-    runApp.$inject = ["$ionicPlatform", "$ionicPopup", "$cordovaNetwork"];
-    function runApp($ionicPlatform, $ionicPopup, $cordovaNetwork) {
+    runApp.$inject = ["$ionicPlatform", "$ionicPopup", "$cordovaNetwork", "OpenURLService"];
+    function runApp($ionicPlatform, $ionicPopup, $cordovaNetwork, o) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -31,11 +31,15 @@ var OurDeal;
             if (window.cordova) {
                 // Create a sticky event for handling the app being opened via a custom URL
                 window.cordova.addStickyDocumentEventHandler('handleopenurl');
+                console.log("window.cordova");
             }
             function handleOpenURL(url) {
                 window.cordova.fireDocumentEvent('handleopenurl', { url: url });
+                console.log("handleOpenURL");
             }
             ;
+            document.addEventListener('handleopenurl', o.handleOpenUrl, false);
+            document.addEventListener('resume', o.onResume, false);
             // Register for any Urban Airship events
             document.addEventListener("urbanairship.registration", function (event) {
                 if (event.error) {
@@ -147,15 +151,11 @@ var OurDeal;
         });
         $urlRouterProvider.otherwise('/app/');
         $ionicConfigProvider.navBar.alignTitle('center');
+        //document.addEventListener('handleopenurl', o.handleOpenUrl, false);
+        //document.addEventListener('resume', o.onResume, false);
     }
     angular.module('OurDeal', ['ionic', 'braintree-angular', 'ngCordova'])
         .run(runApp)
-        .service(['OpenUrlService', function (o) {
-            if (o) {
-                document.addEventListener('handleopenurl', o.handleOpenUrl, false);
-                document.addEventListener('resume', o.onResume, false);
-            }
-        }])
         .config(configApp)
         .constant('clientTokenPath', 'https://script.googleusercontent.com/macros/echo?user_content_key=BKVxIkgcNlhRBKNozswCjGuuQI70emQEUjrglyJ_ezvSeL9rSp0UDkI6kcLjDQw8eXZPhTK-tVat7yf8Xlm6njPxlez2wpc7m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNGitsND9kT-eAhhbJJvQS8Yju48CoLx0uDM8Q8fA6aMP36fsJbJJPpvDZK8eblHPjOmbnRGq-tk&lib=M1H49ebuAVAcbEEfD2DqHRoKMNz51Yx3E');
 })(OurDeal || (OurDeal = {}));
@@ -340,6 +340,7 @@ var OurDeal;
             this.$location = $location;
             this.$rootScope = $rootScope;
             this.$ionicHistory = $ionicHistory;
+            console.log('OpenURLService initiated');
         }
         OpenURLService.prototype.openURL = function (url) {
             this.$log.debug('Handling open URL ' + url);
@@ -366,6 +367,7 @@ var OurDeal;
         return OpenURLService;
     })();
     OurDeal.OpenURLService = OpenURLService;
+    angular.module("OurDeal").service("OpenURLService", OpenURLService);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=open_url_factory.js.map
 var OurDeal;

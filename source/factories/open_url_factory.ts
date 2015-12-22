@@ -10,7 +10,7 @@ module OurDeal {
 		static $inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
 		
 		constructor(private $log: ng.ILogService, private $location: ng.ILocationService, private $rootScope: ng.IRootScopeService, private $ionicHistory: ionic.navigation.IonicHistoryService){
-			
+			console.log('OpenURLService initiated');
 		}
 		
         openURL(url:string){
@@ -41,5 +41,5 @@ module OurDeal {
         
 	}
 	
-	//angular.module("OurDeal").service("OpenURLService", OpenURLService);
+	angular.module("OurDeal").service("OpenURLService", OpenURLService);
 }
