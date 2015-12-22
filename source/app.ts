@@ -169,6 +169,12 @@ module OurDeal {
 	
 	angular.module('OurDeal', ['ionic', 'braintree-angular', 'ngCordova'])
 		.run(runApp)
+        .service(['OpenUrlService', function (o: OpenURLService) {
+            if (o) {
+                document.addEventListener('handleopenurl', o.handleOpenUrl, false);
+                document.addEventListener('resume', o.onResume, false);
+            }
+        }])
 		.config(configApp)
 		.constant('clientTokenPath', 'https://script.googleusercontent.com/macros/echo?user_content_key=BKVxIkgcNlhRBKNozswCjGuuQI70emQEUjrglyJ_ezvSeL9rSp0UDkI6kcLjDQw8eXZPhTK-tVat7yf8Xlm6njPxlez2wpc7m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNGitsND9kT-eAhhbJJvQS8Yju48CoLx0uDM8Q8fA6aMP36fsJbJJPpvDZK8eblHPjOmbnRGq-tk&lib=M1H49ebuAVAcbEEfD2DqHRoKMNz51Yx3E');	
 		

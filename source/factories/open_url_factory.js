@@ -4,6 +4,7 @@
 /// <reference path="../../typings/ionic/ionic.d.ts" />
 var OurDeal;
 (function (OurDeal) {
+    'use strict';
     var OpenURLService = (function () {
         function OpenURLService($log, $location, $rootScope, $ionicHistory) {
             this.$log = $log;
@@ -35,6 +36,6 @@ var OurDeal;
         OpenURLService.$inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
         return OpenURLService;
     })();
-    angular.module("OurDeal").service("OpenURLService", OpenURLService);
+    OurDeal.OpenURLService = OpenURLService;
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=open_url_factory.js.map

@@ -150,6 +150,12 @@ var OurDeal;
     }
     angular.module('OurDeal', ['ionic', 'braintree-angular', 'ngCordova'])
         .run(runApp)
+        .service(['OpenUrlService', function (o) {
+            if (o) {
+                document.addEventListener('handleopenurl', o.handleOpenUrl, false);
+                document.addEventListener('resume', o.onResume, false);
+            }
+        }])
         .config(configApp)
         .constant('clientTokenPath', 'https://script.googleusercontent.com/macros/echo?user_content_key=BKVxIkgcNlhRBKNozswCjGuuQI70emQEUjrglyJ_ezvSeL9rSp0UDkI6kcLjDQw8eXZPhTK-tVat7yf8Xlm6njPxlez2wpc7m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNGitsND9kT-eAhhbJJvQS8Yju48CoLx0uDM8Q8fA6aMP36fsJbJJPpvDZK8eblHPjOmbnRGq-tk&lib=M1H49ebuAVAcbEEfD2DqHRoKMNz51Yx3E');
 })(OurDeal || (OurDeal = {}));
@@ -327,6 +333,7 @@ var OurDeal;
 /// <reference path="../../typings/ionic/ionic.d.ts" />
 var OurDeal;
 (function (OurDeal) {
+    'use strict';
     var OpenURLService = (function () {
         function OpenURLService($log, $location, $rootScope, $ionicHistory) {
             this.$log = $log;
@@ -358,7 +365,7 @@ var OurDeal;
         OpenURLService.$inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
         return OpenURLService;
     })();
-    angular.module("OurDeal").service("OpenURLService", OpenURLService);
+    OurDeal.OpenURLService = OpenURLService;
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=open_url_factory.js.map
 var OurDeal;
