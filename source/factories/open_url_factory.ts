@@ -4,15 +4,39 @@
 /// <reference path="../../typings/ionic/ionic.d.ts" />
 
 module OurDeal {
-	class OpenURLFactory {
+	class OpenURLService {
 		static $inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
 		
 		constructor(private $log: ng.ILogService, private $location: ng.ILocationService, private $rootScope: ng.IRootScopeService, private $ionicHistory: ionic.navigation.IonicHistoryService){
 			
 		}
 		
-		
+        openURL(url:string){
+            this.$log.debug('Handling open URL ' + url);
+            
+            this.$ionicHistory.nextViewOptions({
+                historyRoot: true,
+                disableBack: true,
+                disableAnimate: true
+            })
+            
+            if(url){
+                window.location.hash = url.substr(5);
+                this.$rootScope.$broadcast('handleopenurl', url);
+                window.cordova.removeDocumentEventHandler('handleopenurl');
+                window.cordova.addStickyDocumentEventHandler('handleopenurl');
+                document.removeEventListener('handleopenurl', this.handleOpenUrl);
+            }
+        }
+        
+        handleOpenUrl(e:any){
+            this.openURL(e.url);
+        }
+        
+		onResume(){
+            document.addEventListener('handleopenurl', this.handleOpenUrl, false);
+        }
 	}
 	
-	angular.module("OurDeal").factory("OpenURLFactory", OpenURLFactory);
+	angular.module("OurDeal").service("OpenURLService", OpenURLService);
 }
