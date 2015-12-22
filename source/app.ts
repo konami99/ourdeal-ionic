@@ -49,6 +49,7 @@ module OurDeal {
 
             document.addEventListener("urbanairship.push", function (event) {
                 console.log("Incoming push: " + event.message)
+                console.log(event.extras.route);
             })
 
             // Set tags on a device, that you can push to
