@@ -160,85 +160,6 @@ var OurDeal;
         .constant('clientTokenPath', 'https://script.googleusercontent.com/macros/echo?user_content_key=BKVxIkgcNlhRBKNozswCjGuuQI70emQEUjrglyJ_ezvSeL9rSp0UDkI6kcLjDQw8eXZPhTK-tVat7yf8Xlm6njPxlez2wpc7m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNGitsND9kT-eAhhbJJvQS8Yju48CoLx0uDM8Q8fA6aMP36fsJbJJPpvDZK8eblHPjOmbnRGq-tk&lib=M1H49ebuAVAcbEEfD2DqHRoKMNz51Yx3E');
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=app.js.map
-var OurDeal;
-(function (OurDeal) {
-    var DealInformationBrief = (function () {
-        function DealInformationBrief() {
-        }
-        return DealInformationBrief;
-    })();
-    OurDeal.DealInformationBrief = DealInformationBrief;
-    var DealInformationDetailed = (function () {
-        function DealInformationDetailed() {
-        }
-        return DealInformationDetailed;
-    })();
-    OurDeal.DealInformationDetailed = DealInformationDetailed;
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=deal_information_brief.js.map
-/// <reference path="../../typings/angularjs/angular.d.ts" />
-/// <reference path="../../typings/angularjs/angular-route.d.ts" />
-/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
-/// <reference path="../../typings/ionic/ionic.d.ts" />
-var OurDeal;
-(function (OurDeal) {
-    'use strict';
-    var OpenURLService = (function () {
-        function OpenURLService($log, $location, $rootScope, $ionicHistory) {
-            var _this = this;
-            this.$log = $log;
-            this.$location = $location;
-            this.$rootScope = $rootScope;
-            this.$ionicHistory = $ionicHistory;
-            this.handleOpenUrl = function (e) {
-                _this.openURL(e.url);
-            };
-            console.log('OpenURLService initiated');
-        }
-        OpenURLService.prototype.openURL = function (url) {
-            this.$log.debug('Handling open URL ' + url);
-            this.$ionicHistory.nextViewOptions({
-                historyRoot: true,
-                disableBack: true,
-                disableAnimate: true
-            });
-            if (url) {
-                window.location.hash = url.substr(16);
-                this.$rootScope.$broadcast('handleopenurl', url);
-                window.cordova.removeDocumentEventHandler('handleopenurl');
-                window.cordova.addStickyDocumentEventHandler('handleopenurl');
-                document.removeEventListener('handleopenurl', this.handleOpenUrl);
-            }
-        };
-        OpenURLService.prototype.onResume = function () {
-            document.addEventListener('handleopenurl', this.handleOpenUrl, false);
-        };
-        OpenURLService.$inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
-        return OpenURLService;
-    })();
-    OurDeal.OpenURLService = OpenURLService;
-    angular.module("OurDeal").service("OpenURLService", OpenURLService);
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=open_url_factory.js.map
-/// <reference path="../../typings/angularjs/angular.d.ts" />
-/// <reference path="../../typings/angularjs/angular-route.d.ts" />
-/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
-/// <reference path="../../typings/ionic/ionic.d.ts" />
-var OurDeal;
-(function (OurDeal) {
-    var SearchService = (function () {
-        function SearchService($http) {
-            this.$http = $http;
-        }
-        SearchService.prototype.check = function (address) {
-            return this.$http.get(address, { cache: true });
-        };
-        SearchService.$inject = ['$http'];
-        return SearchService;
-    })();
-    angular.module("OurDeal").service("SearchService", SearchService);
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=deal_search_service.js.map
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
@@ -406,3 +327,84 @@ var OurDeal;
     angular.module('OurDeal').controller('PlaylistCtrl', PlaylistCtrl);
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=playlist_controller.js.map
+/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular-route.d.ts" />
+/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
+/// <reference path="../../typings/ionic/ionic.d.ts" />
+var OurDeal;
+(function (OurDeal) {
+    'use strict';
+    var OpenURLService = (function () {
+        function OpenURLService($log, $location, $rootScope, $ionicHistory) {
+            var _this = this;
+            this.$log = $log;
+            this.$location = $location;
+            this.$rootScope = $rootScope;
+            this.$ionicHistory = $ionicHistory;
+            this.openURL = function (url) {
+                _this.$log.debug('Handling open URL ' + url);
+                _this.$ionicHistory.nextViewOptions({
+                    historyRoot: true,
+                    disableBack: true,
+                    disableAnimate: true
+                });
+                if (url) {
+                    window.location.hash = url.substr(16);
+                    console.log('window.location.hash= ' + window.location.hash);
+                    _this.$rootScope.$broadcast('handleopenurl', url);
+                    window.cordova.removeDocumentEventHandler('handleopenurl');
+                    window.cordova.addStickyDocumentEventHandler('handleopenurl');
+                    document.removeEventListener('handleopenurl', _this.handleOpenUrl);
+                }
+            };
+            this.handleOpenUrl = function (e) {
+                _this.openURL(e.url);
+            };
+            this.onResume = function () {
+                console.log('resume');
+                document.addEventListener('handleopenurl', _this.handleOpenUrl, false);
+            };
+            console.log('OpenURLService initiated');
+        }
+        OpenURLService.$inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
+        return OpenURLService;
+    })();
+    OurDeal.OpenURLService = OpenURLService;
+    angular.module("OurDeal").service("OpenURLService", OpenURLService);
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=open_url_factory.js.map
+var OurDeal;
+(function (OurDeal) {
+    var DealInformationBrief = (function () {
+        function DealInformationBrief() {
+        }
+        return DealInformationBrief;
+    })();
+    OurDeal.DealInformationBrief = DealInformationBrief;
+    var DealInformationDetailed = (function () {
+        function DealInformationDetailed() {
+        }
+        return DealInformationDetailed;
+    })();
+    OurDeal.DealInformationDetailed = DealInformationDetailed;
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_information_brief.js.map
+/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular-route.d.ts" />
+/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
+/// <reference path="../../typings/ionic/ionic.d.ts" />
+var OurDeal;
+(function (OurDeal) {
+    var SearchService = (function () {
+        function SearchService($http) {
+            this.$http = $http;
+        }
+        SearchService.prototype.check = function (address) {
+            return this.$http.get(address, { cache: true });
+        };
+        SearchService.$inject = ['$http'];
+        return SearchService;
+    })();
+    angular.module("OurDeal").service("SearchService", SearchService);
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=deal_search_service.js.map

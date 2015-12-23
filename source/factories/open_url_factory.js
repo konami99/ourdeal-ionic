@@ -12,29 +12,31 @@ var OurDeal;
             this.$location = $location;
             this.$rootScope = $rootScope;
             this.$ionicHistory = $ionicHistory;
+            this.openURL = function (url) {
+                _this.$log.debug('Handling open URL ' + url);
+                _this.$ionicHistory.nextViewOptions({
+                    historyRoot: true,
+                    disableBack: true,
+                    disableAnimate: true
+                });
+                if (url) {
+                    window.location.hash = url.substr(16);
+                    console.log('window.location.hash= ' + window.location.hash);
+                    _this.$rootScope.$broadcast('handleopenurl', url);
+                    window.cordova.removeDocumentEventHandler('handleopenurl');
+                    window.cordova.addStickyDocumentEventHandler('handleopenurl');
+                    document.removeEventListener('handleopenurl', _this.handleOpenUrl);
+                }
+            };
             this.handleOpenUrl = function (e) {
                 _this.openURL(e.url);
             };
+            this.onResume = function () {
+                console.log('resume');
+                document.addEventListener('handleopenurl', _this.handleOpenUrl, false);
+            };
             console.log('OpenURLService initiated');
         }
-        OpenURLService.prototype.openURL = function (url) {
-            this.$log.debug('Handling open URL ' + url);
-            this.$ionicHistory.nextViewOptions({
-                historyRoot: true,
-                disableBack: true,
-                disableAnimate: true
-            });
-            if (url) {
-                window.location.hash = url.substr(16);
-                this.$rootScope.$broadcast('handleopenurl', url);
-                window.cordova.removeDocumentEventHandler('handleopenurl');
-                window.cordova.addStickyDocumentEventHandler('handleopenurl');
-                document.removeEventListener('handleopenurl', this.handleOpenUrl);
-            }
-        };
-        OpenURLService.prototype.onResume = function () {
-            document.addEventListener('handleopenurl', this.handleOpenUrl, false);
-        };
         OpenURLService.$inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
         return OpenURLService;
     })();

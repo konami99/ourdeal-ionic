@@ -13,7 +13,7 @@ module OurDeal {
 			console.log('OpenURLService initiated');
 		}
 		
-        openURL(url:string){
+        openURL=(url:string)=>{
             this.$log.debug('Handling open URL ' + url);
             
             this.$ionicHistory.nextViewOptions({
@@ -24,6 +24,7 @@ module OurDeal {
             
             if(url){
                 window.location.hash = url.substr(16);
+                console.log('window.location.hash= ' + window.location.hash);
                 this.$rootScope.$broadcast('handleopenurl', url);
                 window.cordova.removeDocumentEventHandler('handleopenurl');
                 window.cordova.addStickyDocumentEventHandler('handleopenurl');
@@ -36,7 +37,8 @@ module OurDeal {
             
         }
         
-		onResume(){
+		onResume=()=>{
+            console.log('resume');
             document.addEventListener('handleopenurl', this.handleOpenUrl, false);
         }
         
