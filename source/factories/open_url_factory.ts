@@ -23,7 +23,10 @@ module OurDeal {
             })
             
             if(url){
-                window.location.hash = url.substr(5);
+                console.log("url= " +url);
+                
+                window.location.hash = "#/app/deal/1234599";
+                console.log("window.location.hash= " + window.location.hash);
                 this.$rootScope.$broadcast('handleopenurl', url);
                 window.cordova.removeDocumentEventHandler('handleopenurl');
                 window.cordova.addStickyDocumentEventHandler('handleopenurl');
@@ -31,8 +34,9 @@ module OurDeal {
             }
         }
         
-        handleOpenUrl(e:any){
+        handleOpenUrl=(e:any)=>{
             this.openURL(e.url);
+            
         }
         
 		onResume(){

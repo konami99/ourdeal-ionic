@@ -7,10 +7,14 @@ var OurDeal;
     'use strict';
     var OpenURLService = (function () {
         function OpenURLService($log, $location, $rootScope, $ionicHistory) {
+            var _this = this;
             this.$log = $log;
             this.$location = $location;
             this.$rootScope = $rootScope;
             this.$ionicHistory = $ionicHistory;
+            this.handleOpenUrl = function (e) {
+                _this.openURL(e.url);
+            };
             console.log('OpenURLService initiated');
         }
         OpenURLService.prototype.openURL = function (url) {
@@ -21,15 +25,14 @@ var OurDeal;
                 disableAnimate: true
             });
             if (url) {
-                window.location.hash = url.substr(5);
+                console.log("url= " + url);
+                window.location.hash = "#/app/deal/1234599";
+                console.log("window.location.hash= " + window.location.hash);
                 this.$rootScope.$broadcast('handleopenurl', url);
                 window.cordova.removeDocumentEventHandler('handleopenurl');
                 window.cordova.addStickyDocumentEventHandler('handleopenurl');
                 document.removeEventListener('handleopenurl', this.handleOpenUrl);
             }
-        };
-        OpenURLService.prototype.handleOpenUrl = function (e) {
-            this.openURL(e.url);
         };
         OpenURLService.prototype.onResume = function () {
             document.addEventListener('handleopenurl', this.handleOpenUrl, false);

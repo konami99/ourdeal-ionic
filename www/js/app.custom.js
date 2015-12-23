@@ -167,6 +167,52 @@ var OurDeal;
 var OurDeal;
 (function (OurDeal) {
     'use strict';
+    var OpenURLService = (function () {
+        function OpenURLService($log, $location, $rootScope, $ionicHistory) {
+            var _this = this;
+            this.$log = $log;
+            this.$location = $location;
+            this.$rootScope = $rootScope;
+            this.$ionicHistory = $ionicHistory;
+            this.handleOpenUrl = function (e) {
+                _this.openURL(e.url);
+            };
+            console.log('OpenURLService initiated');
+        }
+        OpenURLService.prototype.openURL = function (url) {
+            this.$log.debug('Handling open URL ' + url);
+            this.$ionicHistory.nextViewOptions({
+                historyRoot: true,
+                disableBack: true,
+                disableAnimate: true
+            });
+            if (url) {
+                console.log("url= " + url);
+                window.location.hash = "#/app/deal/1234599";
+                console.log("window.location.hash= " + window.location.hash);
+                this.$rootScope.$broadcast('handleopenurl', url);
+                window.cordova.removeDocumentEventHandler('handleopenurl');
+                window.cordova.addStickyDocumentEventHandler('handleopenurl');
+                document.removeEventListener('handleopenurl', this.handleOpenUrl);
+            }
+        };
+        OpenURLService.prototype.onResume = function () {
+            document.addEventListener('handleopenurl', this.handleOpenUrl, false);
+        };
+        OpenURLService.$inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
+        return OpenURLService;
+    })();
+    OurDeal.OpenURLService = OpenURLService;
+    angular.module("OurDeal").service("OpenURLService", OpenURLService);
+})(OurDeal || (OurDeal = {}));
+//# sourceMappingURL=open_url_factory.js.map
+/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular-route.d.ts" />
+/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
+/// <reference path="../../typings/ionic/ionic.d.ts" />
+var OurDeal;
+(function (OurDeal) {
+    'use strict';
     var AppCtrl = (function () {
         //http://stackoverflow.com/questions/25854422/using-this-as-scope-when-creating-ionicmodal?rq=1
         function AppCtrl(ionicModal, $scope) {
@@ -333,43 +379,19 @@ var OurDeal;
 /// <reference path="../../typings/ionic/ionic.d.ts" />
 var OurDeal;
 (function (OurDeal) {
-    'use strict';
-    var OpenURLService = (function () {
-        function OpenURLService($log, $location, $rootScope, $ionicHistory) {
-            this.$log = $log;
-            this.$location = $location;
-            this.$rootScope = $rootScope;
-            this.$ionicHistory = $ionicHistory;
-            console.log('OpenURLService initiated');
+    var SearchService = (function () {
+        function SearchService($http) {
+            this.$http = $http;
         }
-        OpenURLService.prototype.openURL = function (url) {
-            this.$log.debug('Handling open URL ' + url);
-            this.$ionicHistory.nextViewOptions({
-                historyRoot: true,
-                disableBack: true,
-                disableAnimate: true
-            });
-            if (url) {
-                window.location.hash = url.substr(5);
-                this.$rootScope.$broadcast('handleopenurl', url);
-                window.cordova.removeDocumentEventHandler('handleopenurl');
-                window.cordova.addStickyDocumentEventHandler('handleopenurl');
-                document.removeEventListener('handleopenurl', this.handleOpenUrl);
-            }
+        SearchService.prototype.check = function (address) {
+            return this.$http.get(address, { cache: true });
         };
-        OpenURLService.prototype.handleOpenUrl = function (e) {
-            this.openURL(e.url);
-        };
-        OpenURLService.prototype.onResume = function () {
-            document.addEventListener('handleopenurl', this.handleOpenUrl, false);
-        };
-        OpenURLService.$inject = ['$log', '$location', '$rootScope', '$ionicHistory'];
-        return OpenURLService;
+        SearchService.$inject = ['$http'];
+        return SearchService;
     })();
-    OurDeal.OpenURLService = OpenURLService;
-    angular.module("OurDeal").service("OpenURLService", OpenURLService);
+    angular.module("OurDeal").service("SearchService", SearchService);
 })(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=open_url_factory.js.map
+//# sourceMappingURL=deal_search_service.js.map
 var OurDeal;
 (function (OurDeal) {
     var DealInformationBrief = (function () {
@@ -386,22 +408,3 @@ var OurDeal;
     OurDeal.DealInformationDetailed = DealInformationDetailed;
 })(OurDeal || (OurDeal = {}));
 //# sourceMappingURL=deal_information_brief.js.map
-/// <reference path="../../typings/angularjs/angular.d.ts" />
-/// <reference path="../../typings/angularjs/angular-route.d.ts" />
-/// <reference path="../../typings/angular-ui-router/angular-ui-router.d.ts" />
-/// <reference path="../../typings/ionic/ionic.d.ts" />
-var OurDeal;
-(function (OurDeal) {
-    var SearchService = (function () {
-        function SearchService($http) {
-            this.$http = $http;
-        }
-        SearchService.prototype.check = function (address) {
-            return this.$http.get(address, { cache: true });
-        };
-        SearchService.$inject = ['$http'];
-        return SearchService;
-    })();
-    angular.module("OurDeal").service("SearchService", SearchService);
-})(OurDeal || (OurDeal = {}));
-//# sourceMappingURL=deal_search_service.js.map
