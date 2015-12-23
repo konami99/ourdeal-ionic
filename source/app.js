@@ -2,6 +2,16 @@
 /// <reference path="../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../typings/angular-ui-router/angular-ui-router.d.ts" />
 /// <reference path="../typings/ionic/ionic.d.ts" />
+function handleOpenURL(url) {
+    console.log("handleOpenURL");
+    window.cordova.fireDocumentEvent('handleopenurl', { url: url });
+}
+;
+if (window.cordova) {
+    // Create a sticky event for handling the app being opened via a custom URL
+    window.cordova.addStickyDocumentEventHandler('handleopenurl');
+    console.log("window.cordova");
+}
 var OurDeal;
 (function (OurDeal) {
     'use strict';
@@ -28,16 +38,6 @@ var OurDeal;
                     });
                 }
             }
-            if (window.cordova) {
-                // Create a sticky event for handling the app being opened via a custom URL
-                window.cordova.addStickyDocumentEventHandler('handleopenurl');
-                console.log("window.cordova");
-            }
-            function handleOpenURL(url) {
-                window.cordova.fireDocumentEvent('handleopenurl', { url: url });
-                console.log("handleOpenURL");
-            }
-            ;
             document.addEventListener('handleopenurl', o.handleOpenUrl, false);
             document.addEventListener('resume', o.onResume, false);
             // Register for any Urban Airship events
