@@ -2,15 +2,14 @@
 /// <reference path="../typings/angularjs/angular-route.d.ts" />
 /// <reference path="../typings/angular-ui-router/angular-ui-router.d.ts" />
 /// <reference path="../typings/ionic/ionic.d.ts" />
-function handleOpenURL(url) {
-    console.log("handleOpenURL");
-    window.cordova.fireDocumentEvent('handleopenurl', { url: url });
-}
-;
 if (window.cordova) {
     // Create a sticky event for handling the app being opened via a custom URL
     window.cordova.addStickyDocumentEventHandler('handleopenurl');
     console.log("window.cordova");
+}
+function handleOpenURL(url) {
+    console.log("handleOpenURL: " + url);
+    window.cordova.fireDocumentEvent('handleopenurl', { url: url });
 }
 var OurDeal;
 (function (OurDeal) {

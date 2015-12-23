@@ -44,6 +44,7 @@
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png"/>
   </platform>
   <plugin name="cordova-plugin-customurlscheme" spec="~4.0.0">
-    <variable name="URL_SCHEME" value="ourdeal-ionic"/>
+    <variable name="URL_SCHEME" value="ourdealionic"/>
   </plugin>
+  <allow-intent href="ourdealionic:*"/>
 </widget>

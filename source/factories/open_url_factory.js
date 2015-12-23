@@ -20,7 +20,7 @@ var OurDeal;
                     disableAnimate: true
                 });
                 if (url) {
-                    window.location.hash = url.substr(16);
+                    window.location.hash = url.substr(15);
                     console.log('window.location.hash= ' + window.location.hash);
                     _this.$rootScope.$broadcast('handleopenurl', url);
                     window.cordova.removeDocumentEventHandler('handleopenurl');

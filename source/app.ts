@@ -9,16 +9,18 @@ interface Window {
 	Connection: any;
 }
 
-function handleOpenURL(url:any) {
-    console.log("handleOpenURL");
-    window.cordova.fireDocumentEvent('handleopenurl', { url: url });
-    
-};  
 
 if (window.cordova) {
     // Create a sticky event for handling the app being opened via a custom URL
     window.cordova.addStickyDocumentEventHandler('handleopenurl');
     console.log("window.cordova");
+}
+
+
+function handleOpenURL(url:any) {
+    console.log("handleOpenURL: " + url);
+    window.cordova.fireDocumentEvent('handleopenurl', { url: url });
+    
 }
         
 module OurDeal {
@@ -190,3 +192,5 @@ module OurDeal {
 	//angular.module('OurDeal', [])
   			
 }
+
+

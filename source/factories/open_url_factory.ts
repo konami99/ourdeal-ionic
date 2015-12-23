@@ -23,7 +23,7 @@ module OurDeal {
             })
             
             if(url){
-                window.location.hash = url.substr(16);
+                window.location.hash = url.substr(15);
                 console.log('window.location.hash= ' + window.location.hash);
                 this.$rootScope.$broadcast('handleopenurl', url);
                 window.cordova.removeDocumentEventHandler('handleopenurl');
