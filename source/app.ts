@@ -22,6 +22,7 @@ function handleOpenURL(url:any) {
     window.cordova.fireDocumentEvent('handleopenurl', { url: url });
     
 }
+
         
 module OurDeal {
 	'use strict';
