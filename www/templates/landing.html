@@ -1,6 +1,6 @@
 <ion-view view-title="OurDeal">
   <ion-content>
-     <div class="list card" ng-repeat="d in landingc.deals">
+     <div class="list card" ng-repeat="d in landingc.deals track by d.dealid">
 
       <div class="item item-text-wrap">
         <h2>{{ d.title }}</h2>
